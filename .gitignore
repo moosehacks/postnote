@@ -6,3 +6,5 @@ out/
 .env
 *.sqlite
 # ~/.bbcrawl/ lives outside the repo; sessions are never committed
+dist/
+.DS_Store
