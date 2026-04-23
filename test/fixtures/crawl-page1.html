@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Crawl page 1</title></head>
+<body>
+  <h1>Page 1</h1>
+  <a href="/crawl-page2.html">Go to page 2</a>
+  <script>
+    window.addEventListener('message', function page1Handler(e) {
+      // __PAGE1_HANDLER__
+      document.body.innerHTML = e.data;
+    });
+  </script>
+</body>
+</html>

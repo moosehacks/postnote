@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Lazy listener fixture</title></head>
+<body>
+  <h1>Lazy listener</h1>
+  <button id="load-btn">Load feature</button>
+  <script>
+    document.getElementById('load-btn').addEventListener('click', function () {
+      // Simulates a lazy-loaded chunk registering a postMessage listener.
+      window.addEventListener('message', function lazyLoadedHandler(e) {
+        // __LAZY_HANDLER__ — distinctive string the smoke test looks for
+        document.title = e.data;
+      });
+    });
+  </script>
+</body>
+</html>

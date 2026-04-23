@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>messageport-broadcast</title></head>
+<body>
+<script>
+// MessagePort listener — registered via EventTarget.prototype.addEventListener
+const { port1 } = new MessageChannel();
+port1.addEventListener('message', function portHandler(e) {
+  document.body.textContent = 'port: ' + e.data;
+});
+
+// BroadcastChannel listener — same path
+const bc = new BroadcastChannel('test-channel');
+bc.addEventListener('message', function broadcastHandler(e) {
+  document.body.textContent = 'bc: ' + e.data;
+});
+</script>
+</body>
+</html>

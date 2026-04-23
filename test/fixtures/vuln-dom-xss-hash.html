@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>DOM XSS via hash</title></head>
+<body>
+<div id="output"></div>
+<script>
+  // Classic hash-to-innerHTML DOM XSS
+  var hash = location.hash.slice(1);
+  document.getElementById('output').innerHTML = decodeURIComponent(hash);
+</script>
+</body>
+</html>

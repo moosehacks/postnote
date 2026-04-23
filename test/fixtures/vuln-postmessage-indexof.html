@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>vuln-indexof</title></head>
+<body>
+<script>
+window.addEventListener('message', function(e) {
+  if (e.origin.indexOf('trusted.com') !== -1) {
+    document.body.innerHTML = e.data;
+  }
+});
+</script>
+</body>
+</html>

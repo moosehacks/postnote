@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Protected page</title></head>
+<body>
+  <!-- This page immediately redirects to /login.html unless the cookie "session" is present. -->
+  <script>
+    function getCookie(name) {
+      return document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
+    }
+    if (!getCookie('session')) {
+      window.location.replace('/login.html');
+    }
+  </script>
+  <div data-testid="account-menu">Welcome, user</div>
+</body>
+</html>

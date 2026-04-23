@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>safe-stricteq</title></head>
+<body>
+<script>
+window.addEventListener('message', function(e) {
+  if (e.origin === 'https://trusted.example.com') {
+    document.body.textContent = e.data;
+  }
+});
+</script>
+</body>
+</html>

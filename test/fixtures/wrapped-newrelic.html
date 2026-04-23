@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>wrapped-newrelic</title></head>
+<body>
+<script>
+// The real handler — contains a distinctive string the test asserts on.
+var realHandler = function(e) {
+  document.title = 'REAL_HANDLER_DISTINCTIVE_STRING';
+};
+
+// Simulates a New Relic-style wrapper: try/catch with nrWrapper telltale.
+var wrappedHandler = function nrWrapper(e) {
+  try {
+    return realHandler.apply(this, arguments);
+  } catch (err) {
+    newrelic.noticeError(err); // New Relic telltale
+  }
+};
+// New Relic exposes the original function on this property.
+wrappedHandler.__NR_original = realHandler;
+
+window.addEventListener('message', wrappedHandler);
+</script>
+</body>
+</html>

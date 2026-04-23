@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>vuln-noorigin</title></head>
+<body>
+<script>
+window.addEventListener('message', function(e) {
+  document.body.innerHTML = e.data;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>postnote demo target</title></head>
+<body>
+<h1>postnote demo target</h1>
+<p>A multi-page vulnerable app covering every detection rule and edge case.</p>
+<nav>
+  <ul>
+    <li><a href="/demo-noorigin.html">1. No origin check (HIGH)</a></li>
+    <li><a href="/demo-indexof.html">2. indexOf origin check (MEDIUM)</a></li>
+    <li><a href="/demo-regex.html">3. Unanchored regex origin check (MEDIUM)</a></li>
+    <li><a href="/demo-wildcard.html">4. Wildcard postMessage targetOrigin (HIGH)</a></li>
+    <li><a href="/demo-wrapped.html">5. Sentry-wrapped listener — wrapper unwinding</a></li>
+    <li><a href="/demo-lazy.html">6. Lazy-loaded listener — tests interact.ts</a></li>
+    <li><a href="/demo-safe.html">7. Safe listener — strict-eq, zero findings expected</a></li>
+  </ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+out/
+*.js.map
+*.d.ts
+.env
+*.sqlite
+# ~/.bbcrawl/ lives outside the repo; sessions are never committed
