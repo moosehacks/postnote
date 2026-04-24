@@ -13,6 +13,7 @@ export interface ListenerEvent {
 export interface PostMessageEvent {
   t: 'postmessage';
   targetOrigin: string;
+  message: string;
   stack: string;
   topUrl: string;
   frameUrl: string;

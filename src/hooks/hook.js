@@ -313,9 +313,13 @@
             : '*'));
       var stack = '';
       try { stack = new Error().stack || ''; } catch (e) { /* ignore */ }
+      var PAYLOAD_CAP = 4096;
       report({
         t: 'postmessage',
         targetOrigin: to,
+        message: (function() {
+          try { return JSON.stringify(message).slice(0, PAYLOAD_CAP); } catch(e) { return '[unserializable]'; }
+        })(),
         stack: stack,
         topUrl: topUrl(),
         frameUrl: window.location.href,

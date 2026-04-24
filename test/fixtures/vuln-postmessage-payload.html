@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+// Sensitive wildcard send — should trigger pm-wildcard-sensitive-payload
+window.postMessage({ token: 'eyJfoo.bar.baz', user: 'alice' }, '*');
+
+// Safe send — specific origin, no finding expected
+window.postMessage({ data: 'hello' }, 'https://trusted.example.com');
+</script>
+</body>
+</html>

@@ -33,6 +33,7 @@ The `--out` directory will contain:
 | `findings.jsonl` | One JSON finding per line, sorted by severity |
 | `report.md` | Human-readable summary with source, stack, and remediation |
 | `listeners.ndjson` | All captured `message` listeners (including safe ones) |
+| `senders.ndjson` | All captured outbound `postMessage` calls (including safe ones) |
 | `manifest.json` | Run metadata: target, timings, counts, tool version |
 | `traces/<hash>.zip` | Playwright trace for every page that produced findings |
 
@@ -90,7 +91,9 @@ This approach handles OAuth, SSO, MFA, CAPTCHA, WebAuthn, and anything else a br
 | `pm-no-origin-check` | high | `message` listener with no `event.origin` check |
 | `pm-loose-origin-check` | medium | Origin checked with `indexOf`, `startsWith`, or `endsWith` (bypassable) |
 | `pm-regex-without-anchors` | medium | Origin validated by a regex missing `^` or `$` |
-| `pm-targetorigin-wildcard` | low | `postMessage(data, '*')` leaks to any receiving origin |
+| `pm-targetorigin-wildcard` | high | `postMessage(data, '*')` leaks to any receiving origin |
+| `pm-wildcard-sensitive-payload` | high | Wildcard send whose payload contains a JWT or credential key |
+| `pm-wildcard-html-payload` | medium | Wildcard send whose payload contains an HTML tag (potential innerHTML XSS) |
 | `dxss-hash-to-sink` | high | `location.hash` value flows into a dangerous DOM sink |
 | `dxss-search-to-sink` | high | `location.search` value flows into a dangerous DOM sink |
 | `dxss-storage-to-sink` | medium | `localStorage`/`sessionStorage` value flows into a dangerous sink |
@@ -107,6 +110,7 @@ out/<run>/
 ├── findings.jsonl      # machine-readable findings (one JSON per line)
 ├── report.md           # human-readable report
 ├── listeners.ndjson    # all captured listeners (including safe ones)
+├── senders.ndjson      # all captured outbound postMessage calls (including safe ones)
 ├── manifest.json       # run metadata
 └── traces/
     └── <page-hash>.zip # Playwright trace for pages with findings

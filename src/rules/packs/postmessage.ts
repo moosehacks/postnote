@@ -91,10 +91,59 @@ export const pmTargetOriginWildcard: Rule = {
   },
 };
 
+const SENSITIVE_PATTERNS: Array<{ label: string; re: RegExp }> = [
+  { label: 'JWT token', re: /eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/ },
+  { label: 'credential key', re: /"(?:token|access_token|auth|apiKey|api_key|secret|password|credential|session)":/i },
+];
+
+export const pmWildcardSensitivePayload: Rule = {
+  id: 'pm-wildcard-sensitive-payload',
+  severity: 'high',
+  title: 'postMessage with wildcard targetOrigin leaks sensitive data',
+  description:
+    'A postMessage sent with targetOrigin "*" contains a payload matching sensitive patterns (JWT, token, credential, etc.). Any origin can receive this data.',
+  match(input) {
+    if (input.eventType !== 'postmessage') return null;
+    if (input.targetOrigin !== '*') return null;
+    if (!input.messagePayload) return null;
+    for (const { label, re } of SENSITIVE_PATTERNS) {
+      if (re.test(input.messagePayload)) {
+        return {
+          matchReason: `wildcard send with ${label} in payload`,
+          remediationHint:
+            'Replace "*" with the specific receiver origin and avoid sending credentials via postMessage.',
+        };
+      }
+    }
+    return null;
+  },
+};
+
+export const pmWildcardHtmlPayload: Rule = {
+  id: 'pm-wildcard-html-payload',
+  severity: 'medium',
+  title: 'postMessage with wildcard targetOrigin sends HTML payload',
+  description:
+    'A postMessage sent with targetOrigin "*" contains an HTML payload. If the receiver inserts this via innerHTML, it may be exploitable for XSS.',
+  match(input) {
+    if (input.eventType !== 'postmessage') return null;
+    if (input.targetOrigin !== '*') return null;
+    if (!input.messagePayload) return null;
+    if (!/<[a-z][^>]*>/i.test(input.messagePayload)) return null;
+    return {
+      matchReason: 'wildcard send with HTML tag in payload',
+      remediationHint:
+        'Replace "*" with the specific receiver origin. If the receiver uses innerHTML with this data, it may be XSS-exploitable.',
+    };
+  },
+};
+
 /** Ordered rule list evaluated by the engine. */
 export const POSTMESSAGE_RULES: Rule[] = [
   pmNoOriginCheck,
   pmLooseOriginCheck,
   pmRegexWithoutAnchors,
   pmTargetOriginWildcard,
+  pmWildcardSensitivePayload,
+  pmWildcardHtmlPayload,
 ];

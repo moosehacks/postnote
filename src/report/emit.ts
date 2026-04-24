@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Finding, Severity } from '../types.js';
+import type { Finding, Severity, PostMessageEvent } from '../types.js';
 import type { CapturedListener } from '../crawler/browser.js';
 
 const SEVERITY_ORDER: Record<Severity, number> = {
@@ -83,6 +83,23 @@ export function emitListeners(listeners: CapturedListener[], outDir: string): vo
 
   const path = join(outDir, 'listeners.ndjson');
   const content = sorted.map((l) => JSON.stringify(l)).join('\n') + (sorted.length ? '\n' : '');
+  writeFileSync(path, content, 'utf8');
+}
+
+/**
+ * Writes all captured outbound postMessage calls to `<outDir>/senders.ndjson`
+ * unconditionally — regardless of whether any rule fired. Sorted by topUrl
+ * then frameUrl for deterministic output.
+ */
+export function emitSenders(senders: PostMessageEvent[], outDir: string): void {
+  const sorted = [...senders].sort((a, b) => {
+    const tu = a.topUrl.localeCompare(b.topUrl);
+    if (tu !== 0) return tu;
+    return a.frameUrl.localeCompare(b.frameUrl);
+  });
+
+  const path = join(outDir, 'senders.ndjson');
+  const content = sorted.map((s) => JSON.stringify(s)).join('\n') + (sorted.length ? '\n' : '');
   writeFileSync(path, content, 'utf8');
 }
 

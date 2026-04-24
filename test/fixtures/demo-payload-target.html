@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>postMessage payload demo</title></head>
+<body>
+<h2>postMessage payload demo target</h2>
+<ul>
+  <li><b>send-jwt</b>: wildcard send with JWT — expect pm-wildcard-sensitive-payload (high)</li>
+  <li><b>send-credential</b>: wildcard send with access_token — expect pm-wildcard-sensitive-payload (high)</li>
+  <li><b>send-html</b>: wildcard send with HTML tag — expect pm-wildcard-html-payload (medium)</li>
+  <li><b>send-wildcard</b>: wildcard send with safe payload — expect pm-targetorigin-wildcard (high) only</li>
+  <li><b>send-safe</b>: specific-origin send — no finding</li>
+</ul>
+<script>
+// 1. JWT in wildcard send → pm-wildcard-sensitive-payload
+window.postMessage({ token: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.SomeSignature123' }, '*');
+
+// 2. access_token key in wildcard send → pm-wildcard-sensitive-payload
+window.postMessage({ access_token: 'sk-supersecret', user: 'alice' }, '*');
+
+// 3. HTML payload in wildcard send → pm-wildcard-html-payload
+window.postMessage('<img src=x onerror=alert(1)>', '*');
+
+// 4. Innocuous wildcard send → pm-targetorigin-wildcard only
+window.postMessage({ type: 'ping', version: 1 }, '*');
+
+// 5. Safe specific-origin send — no finding
+window.postMessage({ data: 'hello' }, 'https://trusted.example.com');
+</script>
+</body>
+</html>

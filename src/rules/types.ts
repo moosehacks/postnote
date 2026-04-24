@@ -10,6 +10,8 @@ export interface RuleInput {
   eventType: 'listener' | 'postmessage' | 'sink';
   /** For postmessage events: the targetOrigin string, if extractable. */
   targetOrigin?: string;
+  /** For postmessage events: the captured payload (JSON-stringified, truncated). */
+  messagePayload?: string;
   /** For sink events: which sink was invoked. */
   sinkName?: SinkName;
   /** For sink events: which taint sources flowed into the sink value. */

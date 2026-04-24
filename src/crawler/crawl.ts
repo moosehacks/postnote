@@ -5,7 +5,7 @@ import { launchBrowser, createPageContext, type CapturedListener } from './brows
 import { Frontier } from './frontier.js';
 import { interact } from './interact.js';
 import { evaluate } from '../rules/engine.js';
-import { emitReport, emitListeners } from '../report/emit.js';
+import { emitReport, emitListeners, emitSenders } from '../report/emit.js';
 import { createManifest, finalizeManifest, writeManifest } from '../report/manifest.js';
 import { deduplicateFindings } from '../report/dedup.js';
 import { resolveStack, resolveOriginalSource } from '../report/sourcemap.js';
@@ -161,6 +161,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
   const rateLimiter = new RateLimiter(rateMs);
   const allFindings: Finding[] = [];
   const allListeners: CapturedListener[] = [];
+  const allSenders: PostMessageEvent[] = [];
   const capturedAt = new Date().toISOString();
   const deadline = Date.now() + maxMs;
   let pagesVisited = 0;
@@ -346,11 +347,13 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
             ? await resolveOriginalSource(res.scriptUrl, res.line, res.col)
             : null;
           const scriptUrlOriginal = orig?.source ?? null;
+          const preview = ev.message.length > 80 ? ev.message.slice(0, 80) + '…' : ev.message;
           const input: RuleInput = {
             eventType: 'postmessage',
             originCheck: 'none',
             listenerSource: '',
             targetOrigin: ev.targetOrigin,
+            messagePayload: ev.message,
           };
           for (const m of evaluate(input)) {
             pageFindings.push({
@@ -363,7 +366,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
               scriptUrl: res.scriptUrl,
               scriptUrlOriginal,
               pageUrl: ev.topUrl,
-              listenerSource: `postMessage(..., "${ev.targetOrigin}")`,
+              listenerSource: `postMessage(${preview}, "${ev.targetOrigin}")`,
               stack: ev.stack,
               attribution: res.attribution,
               capturedAt,
@@ -378,6 +381,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
         allFindings.push(...pageFindings);
         pagesVisited++;
         allListeners.push(...listenerEvents);
+        allSenders.push(...postmessageEvents);
         log.info({ url, finalUrl: ctx.page.url(), listeners: listenerEvents.length, postmessages: postmessageEvents.length, findings: pageFindings.length, linksDiscovered: discoveredUrls.length }, 'page done');
 
         for (const href of discoveredUrls) {
@@ -402,6 +406,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 
   emitReport(allFindings, outDir, newFindingIds);
   emitListeners(allListeners, outDir);
+  emitSenders(allSenders, outDir);
 
   const bySeverity: Record<string, number> = {};
   for (const f of allFindings) {
