@@ -1,0 +1,576 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e5]:
+      - navigation [ref=e6]:
+        - link "Skip to main content" [ref=e7] [cursor=pointer]:
+          - /url: "#main"
+        - generic [ref=e8]:
+          - list [ref=e9]:
+            - listitem [ref=e10]:
+              - link "23andMe Home" [ref=e12] [cursor=pointer]:
+                - /url: /
+                - img "23andMe Home" [ref=e13]
+            - listitem [ref=e14]:
+              - button "Services" [ref=e16] [cursor=pointer]:
+                - generic [ref=e17]: Services
+                - img [ref=e19]
+            - listitem [ref=e22]:
+              - link "Education" [ref=e23] [cursor=pointer]:
+                - /url: https://education.23andme.com
+            - listitem [ref=e24]:
+              - link "Trust Center" [ref=e25] [cursor=pointer]:
+                - /url: https://www.23andmeresearchinstitute.org/trust-center
+          - list [ref=e26]:
+            - listitem [ref=e27]:
+              - link "Sign in" [ref=e28] [cursor=pointer]:
+                - /url: https://you.23andme.com/
+            - listitem [ref=e29]:
+              - link "Register kit" [ref=e30] [cursor=pointer]:
+                - /url: /start/
+            - listitem [ref=e31]:
+              - link "Help" [ref=e32] [cursor=pointer]:
+                - /url: https://customercare.23andme.com/hc/en-us/
+            - listitem [ref=e33]:
+              - link "Join" [ref=e34] [cursor=pointer]:
+                - /url: /compare-dna-tests/
+    - main [ref=e35]:
+      - paragraph [ref=e41]:
+        - text: "Exclusive Offer: Buy one kit, get 20% OFF each additional kit. See cart for details."
+        - link "Buy now" [ref=e42] [cursor=pointer]:
+          - /url: https://store.23andme.com/en-us/cart/
+          - generic [ref=e43]: Buy now
+      - region "Trusted by experts. Recognized for excellence." [ref=e44]:
+        - img "Time Best Inventions Hall of Fame 2025" [ref=e45]
+        - generic [ref=e46]:
+          - heading "Trusted by experts. Recognized for excellence." [level=1] [ref=e47]:
+            - text: Trusted by experts.
+            - text: Recognized for excellence.
+          - paragraph [ref=e48]: Award-winning science that gives you clearer, more actionable insights about you.
+          - list "Awards and recognitions" [ref=e49]:
+            - listitem [ref=e50]:
+              - img [ref=e51]
+              - generic [ref=e52]:
+                - paragraph [ref=e53]: Oprah's
+                - paragraph [ref=e54]: Favorite Things
+                - paragraph [ref=e55]: "2017"
+                - link "Learn more about Oprah's Favorite Things 2017" [ref=e56] [cursor=pointer]:
+                  - /url: https://www.oprah.com/gift/oprahs-favorite-things-2017-full-list-dna-test-ancestry-personal-genetic-service?editors_pick_id=71355
+                  - text: Learn more
+              - img [ref=e57]
+            - listitem [ref=e58]:
+              - img [ref=e59]
+              - generic [ref=e60]:
+                - paragraph [ref=e61]: PCWorld
+                - paragraph [ref=e62]: Editor's Choice
+                - paragraph [ref=e63]: "2020"
+                - link "Learn more about PCWorld Editor's Choice 2020" [ref=e64] [cursor=pointer]:
+                  - /url: https://www.pcworld.com/article/402900/23andme-review.html
+                  - text: Learn more
+              - img [ref=e65]
+            - listitem [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e68]:
+                - paragraph [ref=e69]: Fast Company
+                - paragraph [ref=e70]: Brands That Matter
+                - paragraph [ref=e71]: "2021"
+                - link "Learn more about Fast Company Brands That Matter 2021" [ref=e72] [cursor=pointer]:
+                  - /url: https://www.fastcompany.com/brands-that-matter/2021
+                  - text: Learn more
+              - img [ref=e73]
+            - listitem [ref=e74]:
+              - img [ref=e75]
+              - generic [ref=e76]:
+                - paragraph [ref=e77]: TIME
+                - paragraph [ref=e78]: Best Inventions
+                - paragraph [ref=e79]: "2025"
+                - link "Learn more about TIME Best Inventions 2025" [ref=e80] [cursor=pointer]:
+                  - /url: https://time.com/7323640/25-iconic-inventions/
+                  - text: Learn more
+              - img [ref=e81]
+      - generic [ref=e82]:
+        - heading "Our services" [level=2] [ref=e83]
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]:
+              - heading "Ancestry Service" [level=3] [ref=e88]
+              - heading "Basic Ancestry" [level=3] [ref=e89]
+              - paragraph [ref=e90]: Explore the unique story written in your DNA, from your global ancestry breakdown out of 4,500+ regions to the relatives who share your genetic legacy.
+            - generic [ref=e91]:
+              - generic [ref=e95]: $99
+              - paragraph [ref=e96]
+            - link "Learn more - Ancestry Service" [ref=e98] [cursor=pointer]:
+              - /url: /dna-ancestry/
+              - text: Learn more
+              - generic [ref=e99]: "- Ancestry Service"
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - heading "23andMe+ Premium™" [level=3] [ref=e102]
+              - heading "Advanced Ancestry + Health" [level=3] [ref=e103]
+              - paragraph [ref=e104]: Membership fueled by discovery, sharpened by time. Provides 100+ genetic insights and action tools.
+            - generic [ref=e105]:
+              - generic [ref=e108]:
+                - generic [ref=e109]:
+                  - generic [ref=e110]: "Original Price:"
+                  - text: $199
+                - generic [ref=e111]:
+                  - generic [ref=e112]:
+                    - generic [ref=e113]: "Sale Price:"
+                    - text: $130
+                    - link "*" [ref=e114] [cursor=pointer]:
+                      - /url: "#price-disclaimer"
+                      - superscript [ref=e115]: "*"
+                  - generic "35% off" [ref=e116]: 35% OFF
+              - paragraph [ref=e117]: FSA & HSA Eligible
+            - link "Learn more - 23andMe+ Premium™" [ref=e119] [cursor=pointer]:
+              - /url: /membership/
+              - text: Learn more
+              - generic [ref=e120]: "- 23andMe+ Premium™"
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - heading "23andMe+ Total Health™" [level=3] [ref=e123]
+              - heading "Ultimate Health + Advanced Ancestry" [level=3] [ref=e124]
+              - paragraph [ref=e125]: Our most advanced health kit. Includes next-generation DNA analyses and blood testing to provide cutting-edge longevity insights and guidance toward a healthier you.
+            - generic [ref=e126]:
+              - generic [ref=e130]:
+                - text: $499
+                - link "*" [ref=e131] [cursor=pointer]:
+                  - /url: "#price-disclaimer"
+                  - superscript [ref=e132]: "*"
+              - paragraph [ref=e133]: FSA & HSA Eligible
+            - link "Learn more - 23andMe+ Total Health™" [ref=e135] [cursor=pointer]:
+              - /url: /total-health/
+              - text: Learn more
+              - generic [ref=e136]: "- 23andMe+ Total Health™"
+        - paragraph [ref=e138]:
+          - generic [ref=e139]: "* 23andMe+ Premium renews at $69 per year. Cancel anytime."
+          - generic [ref=e140]: 23andMe+ Total Health renews at $199 per year. Cancel anytime.
+      - generic [ref=e142]:
+        - generic [ref=e143]: 23andMe+ Premium
+        - heading "Connect the dots between past, present, and future you." [level=2] [ref=e144]
+        - paragraph [ref=e145]: Best in class genotyping experience combines the most comprehensive ancestry breakdown with 100+ health reports and insights. Plus ongoing information based on your DNA as the science becomes available.
+        - generic [ref=e146]:
+          - generic [ref=e148]:
+            - button "Advanced Health" [ref=e149] [cursor=pointer]
+            - button "Advanced Ancestry" [ref=e150] [cursor=pointer]
+            - button "Pharmacogenetics**" [ref=e151] [cursor=pointer]
+          - generic "slider" [ref=e153]:
+            - generic [ref=e155]:
+              - generic "slide" [ref=e156]:
+                - generic [ref=e162]:
+                  - strong [ref=e163]: "\"Finding out this early has probably added years to my life.\""
+                  - button "Watch Kristen's Story" [ref=e164] [cursor=pointer]:
+                    - generic [ref=e165]: Watch Kristen's Story
+              - generic [ref=e170]:
+                - button [ref=e171] [cursor=pointer]: Advanced Health
+                - generic [ref=e172]:
+                  - strong [ref=e173]: Sooner > Later
+                  - paragraph [ref=e174]: Get early insights into your genetic predispositions for developing disease, maximizing your opportunity to be proactive in areas of concern, instead of playing defense later. Includes a suite of genetic reports powered by novel polygenic risk scores (PRS), providing actionable insights on some of the most common conditions, with new ones added as the science becomes available.
+              - generic [ref=e180]:
+                - button [ref=e181] [cursor=pointer]: Advanced Ancestry
+                - generic [ref=e182]:
+                  - strong [ref=e183]: Unearth your deepest connections
+                  - paragraph [ref=e184]: Go way back with Historical Matches℠, linking you to ancient figures, perhaps even famous ones like Beethoven. While expanded DNA Relatives helps you find more of your people, up to 5k of them.
+              - generic [ref=e190]:
+                - button [ref=e191] [cursor=pointer]: Pharmacogenetics**
+                - generic [ref=e192]:
+                  - strong [ref=e193]: Why some meds hit different
+                  - paragraph [ref=e194]: Your DNA may impact the way your body processes certain medications. You may be taking a medication that could be adjusted based on your genetics. These insights can be critical for you and your doctor in choosing the correct course of action.
+              - generic [ref=e200]:
+                - generic [ref=e201]:
+                  - generic [ref=e202]:
+                    - generic [ref=e203]: Advanced Ancestry + Health
+                    - strong [ref=e204]:
+                      - text: 23andMe+ Premium
+                      - superscript [ref=e205]: TM
+                  - generic [ref=e206]:
+                    - text: "What sets it apart:"
+                    - generic [ref=e208]: Genetic health screening for 50+ conditions
+                    - generic [ref=e210]: Advanced Ancestry insights
+                    - generic [ref=e212]: Advanced DNA relative filters
+                    - generic [ref=e214]: Health action tools
+                    - generic [ref=e216]: Regular feature adds & updates
+                - generic [ref=e218]:
+                  - generic [ref=e220]:
+                    - img [ref=e222]
+                    - img [ref=e223]
+                  - generic [ref=e224]:
+                    - generic [ref=e225]:
+                      - generic [ref=e228]:
+                        - generic [ref=e229]:
+                          - generic [ref=e230]: "Original Price:"
+                          - text: $199
+                        - generic [ref=e231]:
+                          - generic [ref=e232]:
+                            - generic [ref=e233]: "Sale Price:"
+                            - text: $130
+                            - link [ref=e234] [cursor=pointer]:
+                              - /url: "#price-disclaimer"
+                              - superscript [ref=e235]: "*"
+                          - generic [ref=e236]: 35% OFF
+                      - paragraph [ref=e237]: FSA & HSA ELIGIBLE◆
+                    - generic [ref=e238]:
+                      - link [ref=e239] [cursor=pointer]:
+                        - /url: https://store.23andme.com/en-us/cart/?kitsubprepaid=1
+                        - text: Add to Cart
+                      - link [ref=e240] [cursor=pointer]:
+                        - /url: /test-info/
+                        - text: Important test info
+          - generic [ref=e242]:
+            - link "Learn More" [ref=e243] [cursor=pointer]:
+              - /url: /membership/
+            - generic [ref=e245]:
+              - button [ref=e246] [cursor=pointer]:
+                - img [ref=e247]
+              - button [ref=e250] [cursor=pointer]:
+                - img [ref=e251]
+      - generic [ref=e258]:
+        - heading "23andMe+ Total Health" [level=2] [ref=e259]
+        - img "23andMe+ Total Health" [ref=e260]
+        - paragraph [ref=e261]: Total Health is a next gen longevity platform built with the tools to not only help you live more years, but to live more healthy years. Discover a new take on growing older.
+        - link "Learn more about Total Health" [ref=e262] [cursor=pointer]:
+          - /url: /total-health/
+          - text: Learn more
+          - generic [ref=e263]: about Total Health
+      - generic [ref=e265]:
+        - generic [ref=e266]: Ancestry Service
+        - heading "There’s more to your story." [level=2] [ref=e267]
+        - paragraph [ref=e268]: Understand the larger context of where you come from, breaking down your ancestry to the 0.1%. It's the most comprehensive genetic breakdown on the market, helping you gain a more complete portrait of yourself.
+        - generic [ref=e269]:
+          - generic [ref=e271]:
+            - button "Ancestry Composition" [ref=e272] [cursor=pointer]
+            - button "Ancestry Timeline" [ref=e273] [cursor=pointer]
+            - button "DNA Relative Finder" [ref=e274] [cursor=pointer]
+          - generic "slider" [ref=e276]:
+            - generic [ref=e278]:
+              - generic "slide" [ref=e279]:
+                - generic [ref=e285]:
+                  - strong [ref=e286]: “I always wanted to know who are my ancestors? Who are the people that made me, me?”
+                  - button "Watch Jordan's Story" [ref=e287] [cursor=pointer]:
+                    - generic [ref=e288]: Watch Jordan's Story
+              - generic [ref=e293]:
+                - button [ref=e294] [cursor=pointer]: Ancestry Composition
+                - generic [ref=e295]:
+                  - strong [ref=e296]: If it's worth knowing, it's worth knowing down to the 0.1%
+                  - paragraph [ref=e297]: Discover where in the world your DNA is from across 4,500+ regions - in some cases, down to the county level.
+              - generic [ref=e303]:
+                - button [ref=e304] [cursor=pointer]: Ancestry Timeline
+                - generic [ref=e305]:
+                  - strong [ref=e306]: In the grand scheme of you
+                  - paragraph [ref=e307]: Time hop to gain a clearer picture of where you came from, where your ancestors lived and when they lived there.
+              - generic [ref=e313]:
+                - button [ref=e314] [cursor=pointer]: DNA Relative Finder
+                - generic [ref=e315]:
+                  - strong [ref=e316]: The family tree that keeps growing
+                  - paragraph [ref=e317]: From close family members to distant branches, you'll be amazed by the myriad of people you could be connected to. Open your world to DNA relatives, old and new.
+              - generic [ref=e323]:
+                - generic [ref=e324]:
+                  - generic [ref=e325]:
+                    - generic [ref=e326]: Basic
+                    - strong [ref=e327]: Ancestry Service
+                  - generic [ref=e328]:
+                    - text: "What sets it apart:"
+                    - generic [ref=e330]: 4,500+ regions worldwide
+                    - generic [ref=e332]: Neanderthal DNA
+                    - generic [ref=e334]: Haplogroups
+                    - generic [ref=e336]: Family Tree
+                - generic [ref=e338]:
+                  - generic [ref=e340]:
+                    - img [ref=e342]
+                    - img [ref=e343]
+                  - generic [ref=e344]:
+                    - generic [ref=e349]: $99
+                    - link [ref=e351] [cursor=pointer]:
+                      - /url: https://store.23andme.com/en-us/cart/?ancestrykit=1
+                      - text: Add to Cart
+          - generic [ref=e353]:
+            - link "Learn More" [ref=e354] [cursor=pointer]:
+              - /url: /dna-ancestry/
+            - generic [ref=e356]:
+              - button [ref=e357] [cursor=pointer]:
+                - img [ref=e358]
+              - button [ref=e361] [cursor=pointer]:
+                - img [ref=e362]
+      - generic [ref=e370]:
+        - heading "Privacy by design" [level=2] [ref=e371]
+        - paragraph [ref=e372]: There is no advanced science that comes before your protection. Read more about our enhanced measures designed to keep your data safe, in any scenario.
+        - link "Learn more" [ref=e373] [cursor=pointer]:
+          - /url: https://www.23andmeresearchinstitute.org/trust-center
+      - generic [ref=e375]:
+        - heading "Things you might be wondering:" [level=2] [ref=e376]
+        - generic [ref=e377]:
+          - generic [ref=e378]:
+            - button "How accurate is 23andMe?" [ref=e379] [cursor=pointer]
+            - region:
+              - paragraph [ref=e380]: "23andMe has rigorous standards that ensure high-quality results. Our team of scientists and medical experts use a robust process to develop genetic reports for our customers. Here are specific examples:"
+              - list [ref=e381]:
+                - listitem [ref=e382]: With one of the largest reference datasets in the world, 23andMe provides customers with one of the most detailed and accurate ancestry breakdowns on the market. Our algorithms make ancestry estimates based on probabilities and they’re generally very accurate, but your results are not set in stone. We are always trying to improve and refine these estimates.
+          - generic [ref=e383]:
+            - button "How does 23andMe DNA testing work?" [ref=e384] [cursor=pointer]
+            - region:
+              - paragraph [ref=e385]: After you provide a saliva sample, 23andMe uses genotyping to analyze your DNA. This means we look at specific locations in your genome that are known to differ between people. We then turn those results into personalized genetic reports on everything from ancestry composition to traits to genetic health risks. Note that genotyping is different from DNA sequencing, which looks at every letter in a particular stretch of DNA.
+          - generic [ref=e386]:
+            - button "Who can use 23andMe?" [ref=e387] [cursor=pointer]
+            - region:
+              - paragraph [ref=e388]:
+                - text: Most adults who are able to provide saliva samples can use the 23andMe kit. However there are some considerations that can complicate the DNA accuracy. Check out our
+                - link "Terms of Service" [ref=e389] [cursor=pointer]:
+                  - /url: /legal/terms-of-service/
+                - text: for more info on those cases.
+          - generic [ref=e390]:
+            - button "How do I get my 23andMe reports and how long does it take?" [ref=e391] [cursor=pointer]
+            - region:
+              - paragraph [ref=e392]:
+                - text: To begin, visit
+                - link "www.23andme.com/start" [ref=e393] [cursor=pointer]:
+                  - /url: /start/
+                - text: . Once you have successfully registered your DNA testing kit, provided a saliva sample and put the kit in the mail, you can use the return tracking link available on your profile homepage to track your kit's progress to the lab. Once your sample reaches the lab, it is typically processed within a few weeks, with results then delivered to your secure online account.
+          - generic [ref=e394]:
+            - button "Do 23andMe DNA test kits expire?" [ref=e395] [cursor=pointer]
+            - region:
+              - paragraph [ref=e396]: We encourage customers to provide their sample before the "Collect saliva by" date on the side of the collection tube. If your sample collection kit is lost or damaged, or if it has expired, please contact customer care to assist you with getting a replacement kit.
+          - generic [ref=e397]:
+            - button "Why should I buy 23andMe?" [ref=e398] [cursor=pointer]
+            - region:
+              - paragraph [ref=e399]: When it comes to understanding your DNA, 23andMe offers trusted insights built on years of scientific research and innovation. As a pioneer in personal genetic testing, we've helped millions of people worldwide learn more about their ancestry, their health—and themselves.
+              - paragraph [ref=e400]: We offer more than just ancestry breakdowns. Our genetic health services screen for up to 95+ conditions, helping you understand your personal health risks and predispositions. You can also gain insights into carrier status for family planning, wellness and lifestyle factors, and how your body processes certain medications—empowering proactive, informed health decisions. We're the first and only direct-to-consumer DNA service with multiple health reports with FDA clearance, setting the standard in genetic testing.
+              - paragraph [ref=e401]: With one of the world's largest DNA databases, we provide an unmatched level of detail, accuracy, and discovery in our ancestry product. Our ancestry reports include 4,500+ geographic regions and the option to connect with DNA relatives, making it the most comprehensive ancestry product on the market.
+              - paragraph [ref=e402]: And if you decide to participate in our research program, you'll join millions of others helping advance discoveries in genetics and human health. It's a simple but meaningful way to make an impact in areas like Parkinson's disease, cancer, depression, and more. It's a unique opportunity to contribute to scientific progress, simply by participating from home.
+              - paragraph [ref=e403]: Protecting your privacy and keeping your data secure are top priorities at 23andMe. We're committed to being transparent and giving you clear choices about how your information is used.
+              - paragraph [ref=e404]: So why choose 23andMe? Because it's more than a test. It's a trusted path to self-discovery, backed by science, and built for you.
+          - generic [ref=e405]:
+            - button "Why do at-home genetic testing?" [ref=e406] [cursor=pointer]
+            - region:
+              - paragraph [ref=e407]: Your DNA holds powerful information about your health, ancestry, and traits—and at-home genetic testing puts that knowledge in your hands.
+              - paragraph [ref=e408]: Most people who carry a serious, highly actionable genetic variant don't even know it. In fact, about 90% go undetected through standard doctor visits alone. An at-home genetic test like 23andMe can uncover important health insights that might otherwise remain hidden, giving you the opportunity to take proactive steps, ask better questions, and make more informed decisions.
+              - paragraph [ref=e409]: Unlike traditional medical testing, at-home genetic testing is simple, accessible, and done entirely from home. You don't need a referral or a clinic appointment to start learning about your genetic makeup. And with 23andMe premium subscription services, you're not just getting a one-time snapshot, you're gaining ongoing access to new science-backed reports on everything from inherited health conditions to traits and ancestry.
+              - paragraph [ref=e410]: Personal genetic testing is about empowerment. It's about understanding your risks, discovering your roots, and gaining clarity about how your genes may impact your life, as well as your family's.
+              - paragraph [ref=e411]: When you can access this kind of information directly, you're in a better position to advocate for your health, your choices, and your future.
+      - generic [ref=e413]:
+        - generic [ref=e414]:
+          - heading "Stay in the know." [level=2] [ref=e415]
+          - paragraph [ref=e416]: Keep up-to-date with new discoveries and exclusive promotions on our DNA testing kits and services.
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - textbox "Email address" [ref=e421]
+            - generic: Email address
+          - button "Sign up" [ref=e422] [cursor=pointer]
+      - generic [ref=e424]:
+        - paragraph [ref=e425]:
+          - text: "**The 23andMe PGS test includes health predisposition and carrier status reports. Health predisposition reports include both reports that meet FDA requirements for genetic health risks and reports which are based on 23andMe research and have not been reviewed by the FDA. The test uses qualitative genotyping to detect select clinically relevant variants in the genomic DNA of adults from saliva for the purpose of reporting and interpreting genetic health risks and reporting carrier status. It is not intended to diagnose any disease. Your ethnicity may affect the relevance of each report and how your genetic health risk results are interpreted. Each genetic health risk report describes if a person has variants associated with a higher risk of developing a disease, but does not describe a person’s overall risk of developing the disease. The test is not intended to tell you anything about your current state of health, or to be used to make medical decisions, including whether or not you should take a medication, how much of a medication you should take, or determine any treatment. Our carrier status reports can be used to determine carrier status, but cannot determine if you have two copies of any genetic variant. These carrier reports are not intended to tell you anything about your risk for developing a disease in the future, the health of your fetus, or your newborn child's risk of developing a particular disease later in life. For certain conditions, we provide a single report that includes information on both carrier status and genetic health risk. Warnings & Limitations: The 23andMe PGS Genetic Health Risk Report for BRCA1/BRCA2 (Selected Variants) is indicated for reporting of 44 variants in the BRCA1 and BRCA2 genes. The report describes if a person's genetic result is associated with an increased risk of developing breast cancer and ovarian cancer and may be associated with an increased risk for prostate cancer, pancreatic cancer, and potentially other cancers. The variants included in this report do not represent the majority of the BRCA1/BRCA2 variants in people of most ethnicities. This report does not include variants in other genes linked to hereditary cancers and the absence of variants included in this report does not rule out the presence of other genetic variants that may impact cancer risk. This report is for over-the-counter use by adults over the age of 18, and provides genetic information to inform discussions with a healthcare professional. The PGS test is not a substitute for visits to a healthcare professional for recommended screenings or appropriate follow-up. Results should be confirmed in a clinical setting before taking any medical action. For important information and limitations regarding each genetic health risk and carrier status report, visit"
+          - link "23andme.com/test-info/" [ref=e426] [cursor=pointer]:
+            - /url: /test-info/
+        - paragraph [ref=e427]:
+          - text: "***23andMe PGS Pharmacogenetics reports: The 23andMe test uses qualitative genotyping to detect 3 variants in the CYP2C19 gene, 2 variants in the DPYD gene and 1 variant in the SLCO1B1 gene in the genomic DNA of adults from saliva for the purpose of reporting and interpreting information about the processing of certain therapeutics to inform discussions with a healthcare professional. It does not describe if a person will or will not respond to a particular therapeutic. Our CYP2C19 Pharmacogenetics report provides certain information about variants associated with metabolism of some therapeutics and provides interpretive drug information regarding the potential effect of citalopram and clopidogrel therapy. Our SLCO1B1 Pharmacogenetics report provides certain information about variants associated with the processing of some therapeutics and provides interpretive drug information regarding the potential effect of simvastatin therapy. Our DPYD Pharmacogenetics report does not describe the association between detected variants and any specific therapeutic. Results for DPYD and certain CYP2C19 results should be confirmed by an independent genetic test prescribed by your own healthcare provider before taking any medical action. Warning: Test information should not be used to start, stop, or change any course of treatment and does not test for all possible variants that may affect metabolism or protein function. The PGS test is not a substitute for visits to a healthcare professional. Making changes to your current regimen can lead to harmful side effects or reduced intended benefits of your medication, therefore consult with your healthcare professional before taking any medical action. For important information and limitations regarding Pharmacogenetic reports, visit"
+          - link "23andme.com/test-info/pharmacogenetics/" [ref=e428] [cursor=pointer]:
+            - /url: /test-info/pharmacogenetics/
+        - paragraph [ref=e429]:
+          - generic [ref=e430]:
+            - text: Δ
+            - generic [ref=e431]: triangle
+          - text: Exome Sequencing and blood testing services are available to eligible customers upon completion of the intake questionnaire that must be reviewed, approved and ordered by a third-party clinician. Exome Sequencing is analyzed by a CLIA- and CAP-accredited laboratory. Blood testing is completed by Quest Diagnostics. All telehealth services are provided in accordance with the
+          - link "Telehealth Terms" [ref=e432] [cursor=pointer]:
+            - /url: /legal/telehealth-tos/
+          - text: and
+          - link "Consent to Telehealth" [ref=e433] [cursor=pointer]:
+            - /url: /legal/telehealth-consent/
+          - text: .
+    - contentinfo [ref=e434]:
+      - generic [ref=e435]:
+        - heading "Footer" [level=2] [ref=e436]
+        - link "23andMe Home" [ref=e437] [cursor=pointer]:
+          - /url: /
+          - img "23andMe Home" [ref=e438]
+        - generic [ref=e439]:
+          - generic [ref=e440]:
+            - heading "Services" [level=3] [ref=e441]
+            - list [ref=e442]:
+              - listitem [ref=e443]:
+                - link "Ancestry Service" [ref=e444] [cursor=pointer]:
+                  - /url: /dna-ancestry/
+              - listitem [ref=e445]:
+                - link "23andMe plus Premium" [ref=e446] [cursor=pointer]:
+                  - /url: /membership/
+                  - text: 23andMe+
+                  - generic [ref=e447]: plus
+                  - text: Premium
+              - listitem [ref=e448]:
+                - link "23andMe plus Total Health" [ref=e449] [cursor=pointer]:
+                  - /url: /total-health/
+                  - text: 23andMe+
+                  - generic [ref=e450]: plus
+                  - text: Total Health
+              - listitem [ref=e451]:
+                - link "Gifts" [ref=e452] [cursor=pointer]:
+                  - /url: /gifts/
+              - listitem [ref=e453]:
+                - link "Merchandise" [ref=e454] [cursor=pointer]:
+                  - /url: https://merch.23andme.com/
+          - generic [ref=e455]:
+            - heading "Company" [level=3] [ref=e456]
+            - list [ref=e457]:
+              - listitem [ref=e458]:
+                - link "Media Center" [ref=e459] [cursor=pointer]:
+                  - /url: https://mediacenter.23andme.com/
+              - listitem [ref=e460]:
+                - link "Blog" [ref=e461] [cursor=pointer]:
+                  - /url: https://blog.23andme.com/
+              - listitem [ref=e462]:
+                - link "Careers" [ref=e463] [cursor=pointer]:
+                  - /url: /careers/
+              - listitem [ref=e464]:
+                - link "Refer a Friend" [ref=e465] [cursor=pointer]:
+                  - /url: https://refer.23andme.com/pub_footer_us
+              - listitem [ref=e466]:
+                - link "Return & Refund Policy" [ref=e467] [cursor=pointer]:
+                  - /url: https://customercare.23andme.com/hc/en-us/articles/202907780
+              - listitem [ref=e468]:
+                - link "Customer Care" [ref=e469] [cursor=pointer]:
+                  - /url: https://customercare.23andme.com/hc/en-us/
+              - listitem [ref=e470]:
+                - link "FSA/HSA Eligibility" [ref=e471] [cursor=pointer]:
+                  - /url: /fsa-hsa/
+              - listitem [ref=e472]:
+                - link "Site Map" [ref=e473] [cursor=pointer]:
+                  - /url: /sitemap/
+          - generic [ref=e474]:
+            - heading "Learn" [level=3] [ref=e475]
+            - list [ref=e476]:
+              - listitem [ref=e477]:
+                - link "About Us" [ref=e478] [cursor=pointer]:
+                  - /url: /about/
+              - listitem [ref=e479]:
+                - link "How it Works" [ref=e480] [cursor=pointer]:
+                  - /url: /howitworks/
+              - listitem [ref=e481]:
+                - link "Science" [ref=e482] [cursor=pointer]:
+                  - /url: /genetic-science/
+              - listitem [ref=e483]:
+                - link "Trust Center" [ref=e484] [cursor=pointer]:
+                  - /url: https://www.23andmeresearchinstitute.org/trust-center
+              - listitem [ref=e485]:
+                - link "Research" [ref=e486] [cursor=pointer]:
+                  - /url: /research/
+              - listitem [ref=e487]:
+                - link "Stories" [ref=e488] [cursor=pointer]:
+                  - /url: /stories/
+              - listitem [ref=e489]:
+                - link "Surname Discovery" [ref=e490] [cursor=pointer]:
+                  - /url: https://discover.23andme.com/
+              - listitem [ref=e491]:
+                - link "Genetics Learning Hub" [ref=e492] [cursor=pointer]:
+                  - /url: /topics/
+              - listitem [ref=e493]:
+                - link "DNA & Personalized Healthcare" [ref=e494] [cursor=pointer]:
+                  - /url: /dna-and-personalized-healthcare/
+          - generic [ref=e495]:
+            - heading "Legal" [level=3] [ref=e496]
+            - list [ref=e497]:
+              - listitem [ref=e498]:
+                - link "Important Test Info" [ref=e499] [cursor=pointer]:
+                  - /url: /test-info/
+              - listitem [ref=e500]:
+                - link "Terms of Service" [ref=e501] [cursor=pointer]:
+                  - /url: /legal/terms-of-service/
+              - listitem [ref=e502]:
+                - link "Privacy Statement" [ref=e503] [cursor=pointer]:
+                  - /url: /legal/privacy/
+              - listitem [ref=e504]:
+                - link "Data Protection" [ref=e505] [cursor=pointer]:
+                  - /url: /gdpr/
+              - listitem [ref=e506]:
+                - link "Family Considerations" [ref=e507] [cursor=pointer]:
+                  - /url: https://customercare.23andme.com/hc/en-us/articles/202907980
+              - listitem [ref=e508]:
+                - link "Research Consent" [ref=e509] [cursor=pointer]:
+                  - /url: /about/consent/
+              - listitem [ref=e510]:
+                - link "Individual Data Consent" [ref=e511] [cursor=pointer]:
+                  - /url: /about/individual-data-consent/
+              - listitem [ref=e512]:
+                - link "Biobanking Consent" [ref=e513] [cursor=pointer]:
+                  - /url: /about/biobanking/
+              - listitem [ref=e514]:
+                - link "Cookie Policy" [ref=e515] [cursor=pointer]:
+                  - /url: /about/cookies/
+              - listitem [ref=e516]:
+                - link "Cookie Choices" [ref=e517] [cursor=pointer]:
+                  - /url: "#cookie-choices"
+              - listitem [ref=e518]:
+                - link "Patent Information" [ref=e519] [cursor=pointer]:
+                  - /url: /patents/
+              - listitem [ref=e520]:
+                - link "Report a Security Issue" [ref=e521] [cursor=pointer]:
+                  - /url: /security-report/
+              - listitem [ref=e522]:
+                - link "Consumer Health Data Privacy Policy" [ref=e523] [cursor=pointer]:
+                  - /url: /legal/us-privacy/#washington-consumer-health-data-privacy-policy
+          - generic [ref=e524]:
+            - heading "Partner With Us" [level=3] [ref=e525]
+            - list [ref=e526]:
+              - listitem [ref=e527]:
+                - link "Healthcare Professionals" [ref=e528] [cursor=pointer]:
+                  - /url: https://medical.23andme.com/
+              - listitem [ref=e529]:
+                - link "Scientists" [ref=e530] [cursor=pointer]:
+                  - /url: https://research.23andme.com/
+              - listitem [ref=e531]:
+                - link "Business Development" [ref=e532] [cursor=pointer]:
+                  - /url: https://therapeutics.23andme.com/contact/
+              - listitem [ref=e533]:
+                - link "Enterprise Partnerships" [ref=e534] [cursor=pointer]:
+                  - /url: /enterprise-partnerships/
+          - generic [ref=e535]:
+            - heading "Download App" [level=3] [ref=e536]
+            - list [ref=e537]:
+              - listitem [ref=e538]:
+                - link "Download on the Apple App Store" [ref=e539] [cursor=pointer]:
+                  - /url: https://itunes.apple.com/us/app/23andme/id952516687?ls=1&amp;mt=8
+                  - img "Download on the Apple App Store" [ref=e540]
+              - listitem [ref=e541]:
+                - link "Download on Google Play" [ref=e542] [cursor=pointer]:
+                  - /url: https://play.google.com/store/apps/details?id=com.twentythreeandme.app&amp;hl=en_US
+                  - img "Download on Google Play" [ref=e543]
+        - generic [ref=e544]:
+          - 'button "Current location: United States. Change location" [ref=e545] [cursor=pointer]':
+            - 'img "Current location: United States." [ref=e546]'
+            - generic [ref=e547]: United States | Change
+            - heading "Change location" [level=3] [ref=e548]
+          - heading "Connect" [level=3] [ref=e549]
+          - list [ref=e550]:
+            - listitem [ref=e551]:
+              - link "Facebook" [ref=e552] [cursor=pointer]:
+                - /url: https://www.facebook.com/23andMe/
+                - img "Facebook" [ref=e553]
+            - listitem [ref=e554]:
+              - link "YouTube" [ref=e555] [cursor=pointer]:
+                - /url: https://www.youtube.com/user/23andMe
+                - img "YouTube" [ref=e556]
+            - listitem [ref=e557]:
+              - link "Instagram" [ref=e558] [cursor=pointer]:
+                - /url: https://www.instagram.com/23andMe
+                - img "Instagram" [ref=e559]
+            - listitem [ref=e560]:
+              - link "Twitter" [ref=e561] [cursor=pointer]:
+                - /url: https://twitter.com/23andMe/
+                - img "Twitter" [ref=e562]
+            - listitem [ref=e563]:
+              - link "LinkedIn" [ref=e564] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/23andme
+                - img "LinkedIn" [ref=e565]
+            - listitem [ref=e566]:
+              - link "TikTok" [ref=e567] [cursor=pointer]:
+                - /url: https://www.tiktok.com/@23andme?_t=8W2UgbEqeUd&_r=1
+                - img "TikTok" [ref=e568]
+          - generic [ref=e569]: © 2026 23andMe Research Institute All rights reserved.
+  - alert [ref=e570]
+  - generic [ref=e573]:
+    - generic [ref=e575]:
+      - text: This site uses cookies and other tracking technologies for a variety of purposes, including to operate our site, perform analytics, and advertise our services. This activity may include sensitive information, such as your browsing websites or buying products related to specific health conditions, or session replays of your activity on our site. We may disclose this information to third party partners, including analytics and advertising partners. Exercise your consent rights with respect to sensitive information by selecting "Accept all," "Reject all" or "Manage preferences." To learn more, please visit our
+      - link "Cookie Policy" [ref=e576] [cursor=pointer]:
+        - /url: https://www.23andme.com/about/cookies/
+      - text: .
+      - text: Select “Accept all” to allow us to better personalize our offerings and experience for you.
+    - generic [ref=e578]:
+      - button "Accept all" [ref=e579] [cursor=pointer]
+      - button "Reject all" [ref=e580] [cursor=pointer]
+      - button "Manage preferences" [ref=e581] [cursor=pointer]

@@ -1,0 +1,40 @@
+{
+  "total": 7,
+  "hits": [
+    {
+      "lineNum": 14,
+      "pattern": "postMessage",
+      "content": "\t\t    ***************************************************************************** */function n(w,V,S,k){function B(F){return F instanceof S?F:new S(function(W){W(F)})}return new(S||(S=Promise))(function(F,W){function K(j){try{z(k.next(j))}catch($){W($)}}function G(j){try{z(k.throw(j))}catch($){W($)}}function z(j){j.done?F(j.value):B(j.value).then(K,G)}z((k=k.apply(w,[])).next())})}function r(w,V){var S={label:0,sent:function(){if(F[0]&1)throw F[1];return F[1]},trys:[],ops:[]},k,B,F,W;return W="
+    },
+    {
+      "lineNum": 34,
+      "pattern": "addEventListener.*message",
+      "content": "}`,REQUIRED_OPTIONS_CREATE_SESSION:[\"customer\"],REQUIRED_OPTIONS_UPDATE_SESSION:[\"sessionId\",\"customer\"],REQUIRED_OPTIONS_GET_RECOMMENDATIONS:[\"sessionId\"]}},{}],201:[function(e,d,p){var t=e(\"../lib/braintree-error\");d.exports={PAYMENT_READY_ERROR:{type:t.types.MERCHANT,code:\"PAYMENT_READY_ERROR\"},PAYMENT_READY_MISSING_REQUIRED_OPTION:{type:t.types.MERCHANT,code:\"PAYMENT_READY_MISSING_REQUIRED_OPTION\",message:\"Missing required option for Payment Ready method.\"},PAYMENT_READY_CREATE_SESSION_ERROR"
+    },
+    {
+      "lineNum": 110,
+      "pattern": "addEventListener.*message",
+      "content": "</svg>`,u=\"Tap cancel payment to cancel and return to the business. Continue payment will relaunch the payment window.\",s=400,h=570,E={backdrop:\"venmo-desktop-web-backdrop\",backdropHidden:\"venmo-desktop-web-backdrop.hidden\",backdropContainer:\"venmo-backdrop-container\",cancelButton:\"venmo-popup-cancel-button\",continueButton:\"venmo-popup-continue-button\",message:\"venmo-message\",instructions:\"venmo-instructions\",venmoLogo:\"venmo-full-logo\"};r.suppressUnhandledPromiseMessage=!0;function f(l){var v=l"
+    },
+    {
+      "lineNum": 111,
+      "pattern": "addEventListener.*message",
+      "content": "`)}function b(l){var v=document.getElementById(E.backdrop),I,A,g,P,L,U,H,M;if(v){v.classList.remove(\"hidden\");return}I=document.createElement(\"style\"),A=document.createElement(\"div\"),g=document.createElement(\"div\"),P=document.createElement(\"div\"),L=document.createElement(\"div\"),U=document.createElement(\"div\"),H=document.createElement(\"button\"),M=document.createElement(\"button\"),l&&(I.nonce=l),I.id=\"venmo-desktop-web__injected-styles\",I.innerHTML=O(),A.id=E.backdrop,g.id=E.backdropContainer,P.id="
+    },
+    {
+      "lineNum": 124,
+      "pattern": "postMessage",
+      "content": "\t\t    ***************************************************************************** */function n(w,V,S,k){function B(F){return F instanceof S?F:new S(function(W){W(F)})}return new(S||(S=Promise))(function(F,W){function K(j){try{z(k.next(j))}catch($){W($)}}function G(j){try{z(k.throw(j))}catch($){W($)}}function z(j){j.done?F(j.value):B(j.value).then(K,G)}z((k=k.apply(w,[])).next())})}function r(w,V){var S={label:0,sent:function(){if(F[0]&1)throw F[1];return F[1]},trys:[],ops:[]},k,B,F,W;return W="
+    },
+    {
+      "lineNum": 200,
+      "pattern": "addEventListener.*message",
+      "content": "</svg>`,u=\"Tap cancel payment to cancel and return to the business. Continue payment will relaunch the payment window.\",s=400,h=570,E={backdrop:\"venmo-desktop-web-backdrop\",backdropHidden:\"venmo-desktop-web-backdrop.hidden\",backdropContainer:\"venmo-backdrop-container\",cancelButton:\"venmo-popup-cancel-button\",continueButton:\"venmo-popup-continue-button\",message:\"venmo-message\",instructions:\"venmo-instructions\",venmoLogo:\"venmo-full-logo\"};r.suppressUnhandledPromiseMessage=!0;function f(l){var v=l"
+    },
+    {
+      "lineNum": 201,
+      "pattern": "addEventListener.*message",
+      "content": "`)}function b(l){var v=document.getElementById(E.backdrop),I,A,g,P,L,U,H,M;if(v){v.classList.remove(\"hidden\");return}I=document.createElement(\"style\"),A=document.createElement(\"div\"),g=document.createElement(\"div\"),P=document.createElement(\"div\"),L=document.createElement(\"div\"),U=document.createElement(\"div\"),H=document.createElement(\"button\"),M=document.createElement(\"button\"),l&&(I.nonce=l),I.id=\"venmo-desktop-web__injected-styles\",I.innerHTML=O(),A.id=E.backdrop,g.id=E.backdropContainer,P.id="
+    }
+  ]
+}

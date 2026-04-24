@@ -54,15 +54,17 @@ async function clickInteractiveElements(page: Page, settleMsAfterClick: number):
 
   for (const handle of handles) {
     try {
-      const meta = await handle.evaluate((el, origin) => {
+      const meta = await handle.evaluate((el) => {
         const label =
           el.getAttribute('aria-label') ??
           el.getAttribute('title') ??
           el.textContent ??
           '';
         const href = el.tagName === 'A' ? (el as HTMLAnchorElement).href : null;
-        return { label: label.trim(), href, origin };
-      }, pageOrigin);
+        const form = el.tagName !== 'A' ? (el as HTMLElement).closest('form') : null;
+        const formAction = form ? (form as HTMLFormElement).action : null;
+        return { label: label.trim(), href, formAction };
+      });
 
       if (DANGER_PATTERNS.test(meta.label)) continue;
 
@@ -77,6 +79,13 @@ async function clickInteractiveElements(page: Page, settleMsAfterClick: number):
         // Keep /#/route style fragments since those are hash-router SPA routes.
         const u = new URL(meta.href);
         if (u.pathname === new URL(page.url()).pathname && u.hash && !u.hash.includes('/')) continue;
+      } else if (meta.formAction !== null) {
+        // Prevent submit buttons from posting to a different origin before we scrape
+        // the current page's links — without this a newsletter signup can navigate to
+        // Mailchimp and the <a href> scraping finds zero in-scope links.
+        try {
+          if (new URL(meta.formAction).origin !== pageOrigin) continue;
+        } catch { continue; }
       }
 
       const visible = await handle.isVisible();

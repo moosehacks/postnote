@@ -1,11 +1,17 @@
-import { chromium, type Browser, type BrowserContext, type Page, type CDPSession } from 'playwright';
+import { chromium as chromiumExtra } from 'playwright-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import type { Browser, BrowserContext, Page, CDPSession } from 'playwright';
+
+// Patch all known bot-detection vectors (navigator.webdriver, Chrome runtime shape,
+// plugins, canvas/audio noise, etc.) so Cloudflare Bot Management passes headless through.
+chromiumExtra.use(StealthPlugin());
 import { PRELUDE_SOURCE } from '../hooks/prelude.js';
 import { resolveStack } from '../report/sourcemap.js';
 import type { HookEvent, ListenerEvent, SinkHitEvent } from '../types.js';
 
 /** Launches a bare Chromium browser with no context attached. */
 export async function launchBrowser(): Promise<Browser> {
-  return chromium.launch({ headless: true });
+  return chromiumExtra.launch({ headless: true });
 }
 
 /** A listener event enriched with host-side attribution fields. */
@@ -67,7 +73,7 @@ export async function launchContext({
   storageState,
   enableTracing,
 }: { storageState?: string; enableTracing?: boolean } = {}): Promise<LaunchContextResult> {
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromiumExtra.launch({ headless: true });
   return buildContext(browser, storageState, enableTracing ?? false, async () => { await browser.close(); });
 }
 

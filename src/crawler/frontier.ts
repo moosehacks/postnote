@@ -8,15 +8,12 @@ import { createHash } from 'node:crypto';
  * Fragments that look like routes (contain a '/') are preserved because
  * hash-router SPAs encode routes in the fragment (e.g. /#/settings).
  * Bare anchor fragments (#section) are dropped — they are same-page refs.
+ *
+ * Precondition: `raw` must be a parseable absolute URL. Callers are expected
+ * to validate (e.g. via `new URL(raw)`) before enqueuing.
  */
 export function normalizeUrl(raw: string): string {
-  let u: URL;
-  try {
-    u = new URL(raw);
-  } catch {
-    return raw;
-  }
-
+  const u = new URL(raw); // throws on invalid input — caller must validate
   const sortedKeys = [...new Set([...u.searchParams.keys()].sort())].join(',');
   // Keep /#/route style fragments; drop #anchor style fragments.
   const frag = u.hash && u.hash.includes('/') ? u.hash : '';

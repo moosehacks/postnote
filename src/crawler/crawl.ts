@@ -28,6 +28,12 @@ export interface CrawlOptions {
   /** Minimum delay between requests to the same origin in ms (token bucket, default 500). */
   rateMs?: number;
   /**
+   * Extra ms to wait after the load event before interacting (default 500).
+   * Gives React/Vue/Angular init scripts time to register listeners before we
+   * start clicking. Keep low — this compounds across every page.
+   */
+  settleMs?: number;
+  /**
    * Auth config for mid-crawl session freshness checks (§4.3).
    * If provided, isAuthenticated is checked every `sessionCheckEvery` pages.
    * On failure the crawl halts with SessionExpiredError.
@@ -35,6 +41,13 @@ export interface CrawlOptions {
   authConfig?: AuthConfig;
   /** How often (in pages) to run the session freshness check (default 10). */
   sessionCheckEvery?: number;
+  /**
+   * Additional origins to include in crawl scope beyond the seed origin.
+   * Useful when the target redirects to a different origin (e.g. example.com →
+   * www.example.com) or has content on related origins (e.g. api.example.com).
+   * Each entry must be an absolute origin string: "https://www.example.com".
+   */
+  allowOrigins?: string[];
 }
 
 export interface CrawlResult {
@@ -60,6 +73,34 @@ class RateLimiter {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+/**
+ * Returns true if `pattern` (a wildcard entry from --allow-origins) matches `origin`.
+ *
+ * Two forms are supported:
+ *   "*.foo.com"            — any subdomain of foo.com, any scheme
+ *   "https://*.foo.com"    — any subdomain of foo.com, https only
+ *
+ * The apex itself (foo.com) is NOT matched by *.foo.com — add it explicitly if needed.
+ */
+function wildcardMatches(origin: string, pattern: string): boolean {
+  try {
+    const { hostname, protocol, port } = new URL(origin);
+    if (pattern.startsWith('*.')) {
+      return hostname.endsWith('.' + pattern.slice(2));
+    }
+    // scheme-qualified: "https://*.foo.com" — parse by substituting * temporarily
+    const p = new URL(pattern.replace('*.', '_w_.'));
+    if (protocol !== p.protocol || port !== p.port) return false;
+    return hostname.endsWith('.' + p.hostname.slice('_w_.'.length));
+  } catch { return false; }
+}
+
+/** Returns true if `origin` is covered by the exact allow-set or any wildcard pattern. */
+function isInScope(origin: string, exact: Set<string>, wildcards: string[]): boolean {
+  if (exact.has(origin)) return true;
+  return wildcards.some((pat) => wildcardMatches(origin, pat));
 }
 
 function findingId(ruleId: string, scriptUrl: string | null, source: string): string {
@@ -88,8 +129,10 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
     maxDepth = 3,
     maxMs = 5 * 60 * 1000,
     rateMs = 500,
+    settleMs = 500,
     authConfig,
     sessionCheckEvery = 10,
+    allowOrigins = [],
   } = opts;
 
   mkdirSync(outDir, { recursive: true });
@@ -99,7 +142,19 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
   const runId = randomBytes(8).toString('hex');
   const manifest = createManifest({ runId, target: seedUrl, outDir, storageState });
 
-  const seedOrigin = new URL(seedUrl).origin;
+  // Split explicit overrides into exact origins and wildcard patterns.
+  const wildcardPatterns: string[] = [];
+  const explicitOrigins: string[] = [];
+  for (const entry of allowOrigins) {
+    (entry.includes('*') ? wildcardPatterns : explicitOrigins).push(entry);
+  }
+
+  // Mutable scope set: starts with the seed origin + any explicit overrides.
+  // May be expanded after the seed page loads if it redirects (e.g. apex → www).
+  const allowedOrigins = new Set<string>([
+    new URL(seedUrl).origin,
+    ...explicitOrigins,
+  ]);
   const frontier = new Frontier();
   frontier.enqueue(seedUrl, 0);
 
@@ -124,7 +179,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
       const origin = (() => {
         try { return new URL(url).origin; } catch { return ''; }
       })();
-      if (origin !== seedOrigin) continue;
+      if (!isInScope(origin, allowedOrigins, wildcardPatterns)) continue;
 
       await rateLimiter.wait(origin);
 
@@ -135,73 +190,126 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 
       // Fresh BrowserContext per page — isolated cookies/storage, but shared process.
       const ctx = await createPageContext(browser, { storageState, enableTracing: true });
-      ctx.onReport((ev) => {
-        if (ev.t === 'listener') listenerEvents.push(ev as CapturedListener);
-        else if (ev.t === 'postmessage') postmessageEvents.push(ev as PostMessageEvent);
-      });
-
-      // Collect same-origin links discovered via redirect headers or SPA navigation.
-      const discoveredUrls: string[] = [];
-      ctx.page.on('response', (response) => {
-        const loc = response.headers()['location'];
-        if (loc) {
-          try {
-            const absolute = new URL(loc, url).href;
-            if (new URL(absolute).origin === seedOrigin) discoveredUrls.push(absolute);
-          } catch { /* ignore */ }
-        }
-      });
-      // Capture URLs produced by history.pushState/replaceState (SPA navigation).
-      // framenavigated fires for both pushState and full page navigations, so this
-      // also picks up URLs reached by clicking <a> links in interact().
-      ctx.page.on('framenavigated', (frame) => {
-        if (frame !== ctx.page.mainFrame()) return;
-        const href = frame.url();
-        try {
-          if (new URL(href).origin === seedOrigin) discoveredUrls.push(href);
-        } catch { /* ignore */ }
-      });
-
-      let pageOk = true;
+      // tracePath is set once findings are known; the finally always calls stopTrace with it.
+      let tracePath: string | null = null;
       try {
-        await ctx.page.goto(url, { waitUntil: 'networkidle', timeout: 30_000 });
+        ctx.onReport((ev) => {
+          if (ev.t === 'listener') listenerEvents.push(ev as CapturedListener);
+          else if (ev.t === 'postmessage') postmessageEvents.push(ev as PostMessageEvent);
+        });
 
-        // Mid-crawl session freshness check (§4.3): every sessionCheckEvery pages.
-        if (authConfig && pagesVisited > 0 && pagesVisited % sessionCheckEvery === 0) {
-          await assertAuthenticated(ctx.page, authConfig);
+        // Collect in-scope links discovered via redirect headers.
+        const discoveredUrls: string[] = [];
+        // Buffer without scope-checking because allowedOrigins isn't fully populated
+        // until after goto() resolves (www-variant detection runs then).
+        const redirectBuffer: string[] = [];
+        ctx.page.on('response', (response) => {
+          const loc = response.headers()['location'];
+          if (loc) {
+            try { redirectBuffer.push(new URL(loc, url).href); } catch { /* ignore */ }
+          }
+        });
+
+        try {
+          // Use 'load' instead of 'networkidle': sites with analytics, CF challenges,
+          // or long-polling never reach networkidle and would always time out.
+          await ctx.page.goto(url, { waitUntil: 'load', timeout: 30_000 });
+
+          // On the seed page, detect apex ↔ www redirects and expand scope automatically.
+          // This covers the common pattern where example.com redirects to www.example.com
+          // (or vice versa): without this, every discovered link would fail the origin filter.
+          if (depth === 0 && pagesVisited === 0) {
+            const finalOrigin = (() => { try { return new URL(ctx.page.url()).origin; } catch { return ''; } })();
+            if (finalOrigin && !isInScope(finalOrigin, allowedOrigins, wildcardPatterns)) {
+              const seedHost = new URL(seedUrl).hostname;
+              const finalHost = new URL(ctx.page.url()).hostname;
+              const isWwwVariant = `www.${seedHost}` === finalHost || seedHost === `www.${finalHost}`;
+              if (isWwwVariant) {
+                log.info({ from: new URL(seedUrl).origin, to: finalOrigin }, 'seed redirected to www-variant — expanding scope');
+                allowedOrigins.add(finalOrigin);
+              } else {
+                log.warn(
+                  { from: new URL(seedUrl).origin, to: finalOrigin },
+                  'seed redirected to unrelated origin — scope NOT expanded; use --allow-origins to include it',
+                );
+              }
+            }
+          }
+
+          // Flush redirect buffer now that allowedOrigins is fully populated.
+          for (const href of redirectBuffer) {
+            try {
+              if (isInScope(new URL(href).origin, allowedOrigins, wildcardPatterns)) discoveredUrls.push(href);
+            } catch { /* ignore */ }
+          }
+
+          // Brief settle so SPA init scripts (React, Vue, etc.) can register listeners
+          // before we start interacting.
+          await ctx.page.waitForTimeout(settleMs);
+
+          // Mid-crawl session freshness check (§4.3): every sessionCheckEvery pages.
+          if (authConfig && pagesVisited > 0 && pagesVisited % sessionCheckEvery === 0) {
+            await assertAuthenticated(ctx.page, authConfig);
+          }
+
+          // Wire framenavigated AFTER goto() so the initial navigation (including any
+          // CF-challenge redirects) doesn't pollute the frontier. Only SPA pushState
+          // calls and full-page navigations triggered by interact() are captured.
+          ctx.page.on('framenavigated', (frame) => {
+            if (frame !== ctx.page.mainFrame()) return;
+            const href = frame.url();
+            try {
+              if (isInScope(new URL(href).origin, allowedOrigins, wildcardPatterns)) discoveredUrls.push(href);
+            } catch { /* ignore */ }
+          });
+
+          // Scrape links before interact() so they're preserved if interact() navigates away.
+          const preInteractHrefs = await ctx.page.$$eval('a[href]', (els) =>
+            (els as HTMLAnchorElement[]).map((a) => a.href),
+          );
+
+          if (depth < maxDepth) {
+            await interact(ctx.page);
+          }
+
+          // Check if interact() left us on an in-scope page.
+          const postInteractOrigin = (() => {
+            try { return new URL(ctx.page.url()).origin; } catch { return ''; }
+          })();
+
+          if (isInScope(postInteractOrigin, allowedOrigins, wildcardPatterns)) {
+            // Still in scope: union both snapshots to capture links from SPA routes
+            // visited during interact().
+            const postInteractHrefs = await ctx.page.$$eval('a[href]', (els) =>
+              (els as HTMLAnchorElement[]).map((a) => a.href),
+            );
+            for (const href of [...preInteractHrefs, ...postInteractHrefs]) {
+              try {
+                if (isInScope(new URL(href).origin, allowedOrigins, wildcardPatterns)) discoveredUrls.push(href);
+              } catch { /* ignore */ }
+            }
+          } else {
+            log.warn({ url, navigatedTo: ctx.page.url() }, 'interact() navigated out of scope — using pre-interact link snapshot');
+            for (const href of preInteractHrefs) {
+              try {
+                if (isInScope(new URL(href).origin, allowedOrigins, wildcardPatterns)) discoveredUrls.push(href);
+              } catch { /* ignore */ }
+            }
+          }
+        } catch (err) {
+          if (err instanceof SessionExpiredError) {
+            // Re-throw; the outer finally closes ctx before it propagates.
+            log.error({ url, reason: err.message }, 'session expired — halting crawl');
+            throw err;
+          }
+          // Log but don't bail — the hook fires at load time so listeners captured
+          // before the timeout are still valid and worth evaluating.
+          log.warn({ url, err: (err as Error).message }, 'page load error (partial results kept)');
         }
 
-        // Interact to trigger lazy-loaded code and SPA route transitions.
-        // <a> link scraping happens after interact() so routes revealed by
-        // SPA navigation during interaction are also captured.
-        if (depth < maxDepth) {
-          await interact(ctx.page);
-        }
-
-        // Collect <a href> links from the rendered DOM (post-interaction so SPA
-        // routes that only render after navigation are included).
-        const hrefs = await ctx.page.$$eval('a[href]', (els) =>
-          (els as HTMLAnchorElement[]).map((a) => a.href),
-        );
-        for (const href of hrefs) {
-          try {
-            if (new URL(href).origin === seedOrigin) discoveredUrls.push(href);
-          } catch { /* ignore */ }
-        }
-      } catch (err) {
-        if (err instanceof SessionExpiredError) {
-          log.error({ url, reason: err.message }, 'session expired — halting crawl');
-          await ctx.stopTrace(null);
-          await ctx.close();
-          throw err;
-        }
-        log.warn({ url, err: (err as Error).message }, 'page load failed, skipping');
-        pageOk = false;
-      }
-
-      // Evaluate rules before closing so we can decide whether to keep the trace.
-      const pageFindings: Finding[] = [];
-      if (pageOk) {
+        // Always evaluate captured listeners. A load timeout does not mean the hook
+        // didn't fire — it just means the page never fully settled.
+        const pageFindings: Finding[] = [];
         for (const ev of listenerEvents) {
           const res = resolveStack(ev.stack);
           const orig = res.attribution === 'resolved'
@@ -262,22 +370,24 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
             });
           }
         }
-      }
 
-      // Save trace only for pages that produced findings.
-      const pageHash = createHash('sha256').update(url).digest('hex').slice(0, 16);
-      const tracePath = pageFindings.length > 0 ? join(tracesDir, `${pageHash}.zip`) : null;
-      await ctx.stopTrace(tracePath);
-      await ctx.close();
+        // Persist trace only for pages that produced findings.
+        const pageHash = createHash('sha256').update(url).digest('hex').slice(0, 16);
+        tracePath = pageFindings.length > 0 ? join(tracesDir, `${pageHash}.zip`) : null;
 
-      allFindings.push(...pageFindings);
-      pagesVisited++;
-      allListeners.push(...listenerEvents);
-      log.info({ url, listeners: listenerEvents.length, postmessages: postmessageEvents.length, findings: pageFindings.length }, 'page done');
+        allFindings.push(...pageFindings);
+        pagesVisited++;
+        allListeners.push(...listenerEvents);
+        log.info({ url, finalUrl: ctx.page.url(), listeners: listenerEvents.length, postmessages: postmessageEvents.length, findings: pageFindings.length, linksDiscovered: discoveredUrls.length }, 'page done');
 
-      // Enqueue discovered links.
-      for (const href of discoveredUrls) {
-        frontier.enqueue(href, depth + 1);
+        for (const href of discoveredUrls) {
+          frontier.enqueue(href, depth + 1);
+        }
+      } finally {
+        // Always close ctx — guards against leaks if rule evaluation or sourcemap
+        // resolution throws. tracePath is null when set before any exception.
+        await ctx.stopTrace(tracePath);
+        await ctx.close();
       }
     }
   } finally {

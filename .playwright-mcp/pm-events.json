@@ -1,0 +1,19 @@
+{
+  "prefix": "/*framebus*/",
+  "busEvents": [
+    {
+      "method": "on",
+      "event": "ready",
+      "offset": 109705,
+      "ctx": ":s.authorization,client:s.client}).then(function(){var h=new t(s);return new Promise(function(E,f){h.on(\"ready\",function(){E(h)}),h.on(\"timeout\",function(){f(new a(r.HOSTED_FIELDS_TIMEOUT))})})})}d.exports={supportsInputFormatting:i,create:o(u),VERSION:c}},{\"../lib/basic-component-verification\":147,"
+    },
+    {
+      "method": "on",
+      "event": "timeout",
+      "offset": 109736,
+      "ctx": "t}).then(function(){var h=new t(s);return new Promise(function(E,f){h.on(\"ready\",function(){E(h)}),h.on(\"timeout\",function(){f(new a(r.HOSTED_FIELDS_TIMEOUT))})})})}d.exports={supportsInputFormatting:i,create:o(u),VERSION:c}},{\"../lib/basic-component-verification\":147,\"../lib/braintree-error\":149,\"."
+    }
+  ],
+  "unpackPayload": "bus.target({origin:a}).on(c,u),c}p.subscribeReplier=i},{\"../framebus\":53,\"@braintree/uuid\":70}],67:[function(e,d,p){Object.defineProperty(p,\"__esModule\",{value:!0}),p.subscriptionArgsInvalid=void 0;var t=e(\"./\");function n(r,i,o){return(0,t.isntString)(r)||typeof i!=\"function\"?!0:(0,t.isntString)(o)}p.subscriptionArgsInvalid=n},{\"./\":61}],68:[function(e,d,p){Object.defineProperty(p,\"__esModule\",{value:!0})},{}],69:[function(e,d,p){Object.defineProperty(p,\"__esModule\",{value:!0}),p.unpackPayload=void 0;var t=e(\"./\");function n(r){var i;if(r.data.slice(0,t.prefix.length)!==t.prefix)return!1;try{i=JSON.parse(r.data.slice(t.prefix.length))}catch{return!1}if(i.reply){var o=r.origin,a=r.source,c=i.reply;i.reply=function(s){if(a){var h=(0,t.packagePayload)(c,o,s);h&&a.postMessage(h,o)}}}return i}p.unpackPayload=n},{\"./\":61}],70:[function(e,d,p){function t(){return\"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxx",
+  "frameService": "-button\",continueButton:\"venmo-popup-continue-button\",message:\"venmo-message\",instructions:\"venmo-instructions\",venmoLogo:\"venmo-full-logo\"};r.suppressUnhandledPromiseMessage=!0;function f(l){var v=l.frameServiceInstance,I=l.venmoUrl,A=l.checkForStatusChange,g=l.cancelTokenization,P=l.checkPaymentContextStatus,L=new r;return document.getElementById(E.continueButton).addEventListener(\"click\",function(){v.focus()}),document.getElementById(E.cancelButton).addEventListener(\"click\",function(){v.close(),g(),y()}),v.open({},function(U){var H=1;U?L.reject(U):A(H).then(function(M){L.resolve(M)}).catch(function(M){P().then(function(R){R.status===\"CREATED\"?L.reject(new o(i.VENMO_CUSTOMER_CANCELED)):L.reject(M)})}),v.close(),y()}),v.redirect(I),L}function T(){var l=Math.round((window.outerHeight-h)/2)+window.screenTop,v=Math.round((window.outerWidth-s)/2)+window.screenLeft;return{top:l,left:v}}function y(){document.getElementById(\"venmo-desktop-web-backdrop\").classList.add(\"hidden\")}function O(){v"
+}

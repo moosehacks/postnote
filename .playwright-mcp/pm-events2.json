@@ -1,0 +1,180 @@
+{
+  "eventBlocks": [
+    {
+      "offset": 160647,
+      "match": "C={merchantAccountId:this._merchantAccountId,paypalAccount:{correlationId:R.btLpToken||R.token,paymentToken:R.btLpPaymentId||R.paymentId,payerId:R.btLpPayerId||R.PayerID,unilateral:_.paypal.unvettedMerchant,intent:\"sale\"}"
+    },
+    {
+      "offset": 170714,
+      "match": "I={environment:l.environment,requestToken:N.requestToken,callbackUrl:b._callbackUrl,merchantCheckoutId:l.masterpass.merchantCheckoutId,allowedCardTypes:l.masterpass.supportedNetworks,version:h.MASTERPASS_VERSION}"
+    },
+    {
+      "offset": 239012,
+      "match": "H={ecToken:A.paymentToken,billingToken:A.billingToken,payerId:A.payerID,paymentId:A.paymentID,orderId:A.orderID,shippingOptionsId:A.shippingOptionsId}"
+    },
+    {
+      "offset": 245694,
+      "match": "P={merchantAccountId:this._merchantAccountId,paymentId:A.paymentId||A.orderId,currencyIsoCode:A.currency}"
+    },
+    {
+      "offset": 262568,
+      "match": "I={sepa_debit_account:{last_4:v.last4,merchant_or_partner_customer_id:v.customerId,bank_reference_token:v.bankReferenceToken,mandate_type:v.mandateType}"
+    },
+    {
+      "offset": 317047,
+      "match": "C={publicToken:R,accountId:g?x.account_id:\"plaid_account_id\",accountType:x.account.subtype.toUpperCase(),achMandate:l.mandateText,billingAddress:b(_.billingAddress||{}"
+    },
+    {
+      "offset": 332344,
+      "match": "T={intent:f,paymentMethodUsage:this.paymentMethodUsage,venmoRiskCorrelationId:this.riskCorrelationId,customerClient:\"DESKTOP\"}"
+    },
+    {
+      "offset": 346465,
+      "match": "E={backdrop:\"venmo-desktop-web-backdrop\",backdropHidden:\"venmo-desktop-web-backdrop.hidden\",backdropContainer:\"venmo-backdrop-container\",cancelButton:\"venmo-popup-cancel-button\",continueButton:\"venmo-popup-continue-button\",message:\"venmo-message\",instructions:\"venmo-instructions\",venmoLogo:\"venmo-full-logo\"}"
+    },
+    {
+      "offset": 363399,
+      "match": "C={checkForStatusChange:_._checkPaymentContextStatusAndProcessResult.bind(_),cancelTokenization:_.cancelTokenization.bind(_),frameServiceInstance:_._frameServiceInstance,venmoUrl:D,debug:_._isDebug,checkPaymentContextStatus:_._checkPaymentContextStatus.bind(_)}"
+    },
+    {
+      "offset": 374994,
+      "match": "C={nonce:_.paymentMethodNonce,type:\"VenmoAccount\",details:{username:H(_.username),paymentContextId:_.id}"
+    },
+    {
+      "offset": 440356,
+      "match": "T={intent:f,paymentMethodUsage:this.paymentMethodUsage,venmoRiskCorrelationId:this.riskCorrelationId,customerClient:\"DESKTOP\"}"
+    },
+    {
+      "offset": 454456,
+      "match": "E={backdrop:\"venmo-desktop-web-backdrop\",backdropHidden:\"venmo-desktop-web-backdrop.hidden\",backdropContainer:\"venmo-backdrop-container\",cancelButton:\"venmo-popup-cancel-button\",continueButton:\"venmo-popup-continue-button\",message:\"venmo-message\",instructions:\"venmo-instructions\",venmoLogo:\"venmo-full-logo\"}"
+    },
+    {
+      "offset": 471386,
+      "match": "C={checkForStatusChange:_._checkPaymentContextStatusAndProcessResult.bind(_),cancelTokenization:_.cancelTokenization.bind(_),frameServiceInstance:_._frameServiceInstance,venmoUrl:D,debug:_._isDebug,checkPaymentContextStatus:_._checkPaymentContextStatus.bind(_)}"
+    },
+    {
+      "offset": 482981,
+      "match": "C={nonce:_.paymentMethodNonce,type:\"VenmoAccount\",details:{username:H(_.username),paymentContextId:_.id}"
+    }
+  ],
+  "busOnCalls": [
+    {
+      "offset": 38484,
+      "ctx": "s,h),n.Framebus.target({origin:a}).off(c,u)}return n.Framebus.target({origin:a}).on(c,u),c}p.subscribeReplier=i},{\"../framebus\":53,\"@braintree/uuid\":70}],67:[function(e,d,p){Object.defineProperty(p,\"__esModule\",{value:!0}),p.subscriptionArgsInvalid=void 0;var t=e(\"./\");function n"
+    },
+    {
+      "offset": 99856,
+      "ctx": "typeof Z==\"string\"&&(G._merchantConfigurationOptions.styles[Q]=h(Z))}),this._bus.on(N.REMOVE_FOCUS_INTERCEPTS,function(Q){_(Q&&Q.id)}),this._bus.on(N.TRIGGER_FOCUS_CHANGE,x.createFocusChangeHandler(re,{onRemoveFocusIntercepts:function(Q){G._bus.emit(N.REMOVE_FOCUS_INTERCEPTS,{id:"
+    },
+    {
+      "offset": 99920,
+      "ctx": "(Z))}),this._bus.on(N.REMOVE_FOCUS_INTERCEPTS,function(Q){_(Q&&Q.id)}),this._bus.on(N.TRIGGER_FOCUS_CHANGE,x.createFocusChangeHandler(re,{onRemoveFocusIntercepts:function(Q){G._bus.emit(N.REMOVE_FOCUS_INTERCEPTS,{id:Q})},onTriggerInputFocus:function(Q){G.focus(Q)}})),this._bus.on"
+    },
+    {
+      "offset": 100117,
+      "ctx": "CUS_INTERCEPTS,{id:Q})},onTriggerInputFocus:function(Q){G.focus(Q)}})),this._bus.on(N.READY_FOR_CLIENT,function(Q){G._clientPromise.then(function(Z){Q(Z)})}),this._bus.on(N.CARD_FORM_ENTRY_HAS_BEGUN,function(){v.sendEvent(G._clientPromise,\"hosted-fields.input.started\")}),this._bu"
+    },
+    {
+      "offset": 100204,
+      "ctx": "EADY_FOR_CLIENT,function(Q){G._clientPromise.then(function(Z){Q(Z)})}),this._bus.on(N.CARD_FORM_ENTRY_HAS_BEGUN,function(){v.sendEvent(G._clientPromise,\"hosted-fields.input.started\")}),this._bus.on(N.BIN_AVAILABLE,function(Q){G._emit(\"binAvailable\",{bin:Q})}),k=setTimeout(functio"
+    },
+    {
+      "offset": 100318,
+      "ctx": "nction(){v.sendEvent(G._clientPromise,\"hosted-fields.input.started\")}),this._bus.on(N.BIN_AVAILABLE,function(Q){G._emit(\"binAvailable\",{bin:Q})}),k=setTimeout(function(){v.sendEvent(G._clientPromise,\"custom.hosted-fields.load.timed-out\"),G._emit(\"timeout\")},T),Promise.all($).then"
+    },
+    {
+      "offset": 100652,
+      "ctx": "tConfigurationOptions)),G._cleanUpFocusIntercepts(),G._emit(\"ready\")}),this._bus.on(N.FRAME_READY,function(Q,Z){j[Q.field](Z)}),this._bus.on(N.INPUT_EVENT,D(z).bind(this)),this._destructor.registerFunctionForTeardown(function(){var Q,Z,X;for(Q=0;Q<G._injectedNodes.length;Q++)Z=G."
+    },
+    {
+      "offset": 100709,
+      "ctx": "it(\"ready\")}),this._bus.on(N.FRAME_READY,function(Q,Z){j[Q.field](Z)}),this._bus.on(N.INPUT_EVENT,D(z).bind(this)),this._destructor.registerFunctionForTeardown(function(){var Q,Z,X;for(Q=0;Q<G._injectedNodes.length;Q++)Z=G._injectedNodes[Q],X=Z.parentNode,X.removeChild(Z),X.class"
+    },
+    {
+      "offset": 136146,
+      "ctx": "l=(function(){m(),this._bus.off(o.DISPATCH_FRAME_READY,l)}).bind(this);this._bus.on(o.DISPATCH_FRAME_READY,l),this._writeDispatchFrame()},N.prototype._writeDispatchFrame=function(){var m=c.DISPATCH_FRAME_NAME+\"_\"+this._serviceId,l=this._options.dispatchFrameUrl;this._dispatchFram"
+    },
+    {
+      "offset": 136574,
+      "ctx": "appendChild(this._dispatchFrame)},N.prototype._setBusEvents=function(){this._bus.on(o.DISPATCH_FRAME_REPORT,(function(m,l){this._onCompleteCallback&&this._onCompleteCallback.call(null,m.err,m.payload),this._frame.close(),this._onCompleteCallback=null,l&&l()}).bind(this)),this._bu"
+    },
+    {
+      "offset": 136775,
+      "ctx": "this._frame.close(),this._onCompleteCallback=null,l&&l()}).bind(this)),this._bus.on(T,(function(m){m(this.state)}).bind(this))},N.prototype.open=function(m,l){if(m=m||{},this._frame=this._getFrameForEnvironment(m),this._frame.initialize(l),!(this._frame instanceof n)){if(f(this.s"
+    },
+    {
+      "offset": 187971,
+      "ctx": "MENT_REQUEST_NO_VALID_SUPPORTED_PAYMENT_METHODS)):new Promise(function(g){A._bus.on(y.FRAME_READY,function(P){P(A._client)}),A._bus.on(y.FRAME_CAN_MAKE_REQUESTS,function(){t.sendEvent(A._client,\"payment-request.initialized\"),A._bus.on(y.SHIPPING_ADDRESS_CHANGE,function(P){var L={"
+    },
+    {
+      "offset": 188022,
+      "ctx": "ew Promise(function(g){A._bus.on(y.FRAME_READY,function(P){P(A._client)}),A._bus.on(y.FRAME_CAN_MAKE_REQUESTS,function(){t.sendEvent(A._client,\"payment-request.initialized\"),A._bus.on(y.SHIPPING_ADDRESS_CHANGE,function(P){var L={target:{shippingAddress:P},updateWith:function(U){A"
+    },
+    {
+      "offset": 188122,
+      "ctx": "_REQUESTS,function(){t.sendEvent(A._client,\"payment-request.initialized\"),A._bus.on(y.SHIPPING_ADDRESS_CHANGE,function(P){var L={target:{shippingAddress:P},updateWith:function(U){A._bus.emit(y.UPDATE_SHIPPING_ADDRESS,U)}};A._emit(\"shippingAddressChange\",L),A._emit(\"shippingaddres"
+    },
+    {
+      "offset": 188342,
+      "ctx": "};A._emit(\"shippingAddressChange\",L),A._emit(\"shippingaddresschange\",L)}),A._bus.on(y.SHIPPING_OPTION_CHANGE,function(P){var L={target:{shippingOption:P},updateWith:function(U){A._bus.emit(y.UPDATE_SHIPPING_OPTION,U)}};A._emit(\"shippingOptionChange\",L),A._emit(\"shippingoptionchan"
+    },
+    {
+      "offset": 275441,
+      "ctx": "-authentication-complete-frame.html?channel=\"+encodeURIComponent(g)+\"&\";return P.on(y,function(U){U({clientConfiguration:v,nonce:l.nonce,acsUrl:A.acsUrl,pareq:A.pareq,termUrl:A.termUrl+\"&three_d_secure_version=\"+O+\"&authentication_complete_base_url=\"+encodeURIComponent(L),md:A.md"
+    },
+    {
+      "offset": 311710,
+      "ctx": "/\"+f+\"/html/unionpay-hosted-fields-frame\"+a(m)+\".html\",height:0,width:0}),v._bus.on(O,function(A){A(v._options.client),I()}),document.body.appendChild(v._hostedFieldsFrame)}),this._hostedFieldsInitializePromise)},d.exports=y.wrapPrototype(b)},{\"../../lib/analytics\":144,\"../../lib"
+    },
+    {
+      "offset": 327768,
+      "ctx": "otype.initialize=function(){var f=this;return new this.Promise(function(T){f.bus.on(a.VENMO_DESKTOP_IFRAME_READY,function(){T(f)}),f.bus.on(a.VENMO_DESKTOP_REQUEST_NEW_QR_CODE,function(){f.sendEvent(\"venmo.tokenize.desktop.restarted-from-error-view\"),f.startPolling()}),document.b"
+    },
+    {
+      "offset": 327824,
+      "ctx": "romise(function(T){f.bus.on(a.VENMO_DESKTOP_IFRAME_READY,function(){T(f)}),f.bus.on(a.VENMO_DESKTOP_REQUEST_NEW_QR_CODE,function(){f.sendEvent(\"venmo.tokenize.desktop.restarted-from-error-view\"),f.startPolling()}),document.body.appendChild(f.iframe),document.body.appendChild(f.al"
+    },
+    {
+      "offset": 328656,
+      "ctx": ":!1,reason:\"CUSTOMER_CANCELED\"})};f.completedHandler=function(l){b(),y(l)},f.bus.on(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.on(a.VENMO_DESKTOP_UNKNOWN_ERROR,N)});return this.iframe.style.display=\"block\",this.setAlert(\"Generating a QR code, get your Venmo app ready\"),this.ifram"
+    },
+    {
+      "offset": 328702,
+      "ctx": "andler=function(l){b(),y(l)},f.bus.on(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.on(a.VENMO_DESKTOP_UNKNOWN_ERROR,N)});return this.iframe.style.display=\"block\",this.setAlert(\"Generating a QR code, get your Venmo app ready\"),this.iframe.focus(),this.startPolling(),T.then(function("
+    },
+    {
+      "offset": 410749,
+      "ctx": "s,h),n.Framebus.target({origin:a}).off(c,u)}return n.Framebus.target({origin:a}).on(c,u),c}p.subscribeReplier=i},{\"../framebus\":39,\"@braintree/uuid\":56}],53:[function(e,d,p){Object.defineProperty(p,\"__esModule\",{value:!0}),p.subscriptionArgsInvalid=void 0;var t=e(\"./\");function n"
+    },
+    {
+      "offset": 421133,
+      "ctx": "l=(function(){m(),this._bus.off(o.DISPATCH_FRAME_READY,l)}).bind(this);this._bus.on(o.DISPATCH_FRAME_READY,l),this._writeDispatchFrame()},N.prototype._writeDispatchFrame=function(){var m=c.DISPATCH_FRAME_NAME+\"_\"+this._serviceId,l=this._options.dispatchFrameUrl;this._dispatchFram"
+    },
+    {
+      "offset": 421561,
+      "ctx": "appendChild(this._dispatchFrame)},N.prototype._setBusEvents=function(){this._bus.on(o.DISPATCH_FRAME_REPORT,(function(m,l){this._onCompleteCallback&&this._onCompleteCallback.call(null,m.err,m.payload),this._frame.close(),this._onCompleteCallback=null,l&&l()}).bind(this)),this._bu"
+    },
+    {
+      "offset": 421762,
+      "ctx": "this._frame.close(),this._onCompleteCallback=null,l&&l()}).bind(this)),this._bus.on(T,(function(m){m(this.state)}).bind(this))},N.prototype.open=function(m,l){if(m=m||{},this._frame=this._getFrameForEnvironment(m),this._frame.initialize(l),!(this._frame instanceof n)){if(f(this.s"
+    },
+    {
+      "offset": 435780,
+      "ctx": "otype.initialize=function(){var f=this;return new this.Promise(function(T){f.bus.on(a.VENMO_DESKTOP_IFRAME_READY,function(){T(f)}),f.bus.on(a.VENMO_DESKTOP_REQUEST_NEW_QR_CODE,function(){f.sendEvent(\"venmo.tokenize.desktop.restarted-from-error-view\"),f.startPolling()}),document.b"
+    },
+    {
+      "offset": 435836,
+      "ctx": "romise(function(T){f.bus.on(a.VENMO_DESKTOP_IFRAME_READY,function(){T(f)}),f.bus.on(a.VENMO_DESKTOP_REQUEST_NEW_QR_CODE,function(){f.sendEvent(\"venmo.tokenize.desktop.restarted-from-error-view\"),f.startPolling()}),document.body.appendChild(f.iframe),document.body.appendChild(f.al"
+    },
+    {
+      "offset": 436668,
+      "ctx": ":!1,reason:\"CUSTOMER_CANCELED\"})};f.completedHandler=function(l){b(),y(l)},f.bus.on(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.on(a.VENMO_DESKTOP_UNKNOWN_ERROR,N)});return this.iframe.style.display=\"block\",this.setAlert(\"Generating a QR code, get your Venmo app ready\"),this.ifram"
+    },
+    {
+      "offset": 436714,
+      "ctx": "andler=function(l){b(),y(l)},f.bus.on(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.on(a.VENMO_DESKTOP_UNKNOWN_ERROR,N)});return this.iframe.style.display=\"block\",this.setAlert(\"Generating a QR code, get your Venmo app ready\"),this.iframe.focus(),this.startPolling(),T.then(function("
+    }
+  ],
+  "hostedFields": ",HostedCardFields:\"hostedFields\"},H=\"braintree\",M=(P={},P[U.Client]=\"client\",P[U.HostedCardFields]=\"hosted-fields\",P),R=(L={},L[U.Client]={id:\"client\",module:U.Client,amdModule:{unminified:\"\".concat(H,\"/\").concat(M[U.Client]),minified:\"\".concat(H,\"/\").concat(M[U.Client],\".min\")},script:{unminified:\"\".concat(M[U.Client],\".js\"),minified:\"\".concat(M[U.Client],\".min.js\")}},L[U.HostedCardFields]={id:\"hcf\",module:U.HostedCardFields,amdModule:{unminified:\"\".concat(H,\"/\").concat(M[U.HostedCardFields]),minified:\"\".concat(H,\"/\").concat(M[U.HostedCardFields],\".min\")},script:{unminified:\"\".concat(M[U.HostedCardFields],\".js\"),minified:\"\".concat(M[U.HostedCardFields],\".min.js\")}},L);function x(w){return n(this,void 0,void 0,function(){var V,S,k,B;return r(this,function(F){switch(F.label){case 0:return performance.mark(\"pp_axo_sdk_init_invoked\"),V=w.btSdkVersion,S=w.minified,k=D(w),B=Y(w),w.platform!==m.BT?[3,2]:[4,Promise.all([I(R.hostedFields,V,S),_(k,S)])];case 1:return F.sent(),[3,5];case 2:return w.platform!==m.PPCP?[3,4]:[4,Promise.all([I(R.client,V,S),I(R.hostedFields,V,S),_(k,S)])];case 3:r",
+  "nonceHandling": "onvert-methods-to-error\"),a=e(\"@braintree/wrap-promise\");function c(u){this._client=u.client}c.prototype.getRewardsBalance=function(u){var s=u.nonce,h;return s?(h=r({_meta:{source:\"american-express\"},paymentMethodNonce:s},u),delete h.nonce,this._client.request({method:\"get\",endpoint:\"payment_methods/amex_rewards_balance\",data:h}).catch(function(E){return Promise.reject(new t({type:n.AMEX_NETWORK_ERROR.type,code:n.AMEX_NETWORK_ERROR.code,message:\"A network error occurred when getting the American Express rewards balance.\",details:{originalError:E}}))})):Promise.reject(new t({type:n.AMEX_NONCE_REQUIRED.type,code:n.AMEX_NONCE_REQUIRED.code,message:\"getRewardsBalance must be called with a nonce."
+}

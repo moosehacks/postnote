@@ -1,0 +1,24 @@
+{
+  "framebusConstructions": [],
+  "busAssignments": [
+    {
+      "offset": 97363,
+      "ctx": "s),this._injectedNodes=[],this._destructor=new i,this._fields=z,this._state={fields:{},cards:H(\"\")},this._bus=new a({channel:re,verifyDomain:r,targetFrames:[window]}),this._destructor.registerFunctionForTeardown(function(){G._bus.teardown()}),S.client?v.sendEvent(this._clientPromise,\"custom.hosted-fields.initialized\"):v.sendEvent(this._clientPromise,\"custom.hosted-fields.initialized.deferred-client\"),Object.keys(S.fields).forEach((function(Q){var Z,X,ee,te,oe;if(!E.allowedFields.hasOwnProperty(Q"
+    },
+    {
+      "offset": 135963,
+      "ctx": "FrameUrl:m.openFrameUrl,height:m.height,width:m.width,top:m.top,left:m.left},this.state=m.state||{},this._bus=new i({channel:this._serviceId}),this._setBusEvents()}N.prototype.initialize=function(m){var l=(function(){m(),this._bus.off(o.DISPATCH_FRAME_READY,l)}).bind(this);this._bus.on(o.DISPATCH_FRAME_READY,l),this._writeDispatchFrame()},N.prototype._writeDispatchFrame=function(){var m=c.DISPATCH_FRAME_NAME+\"_\"+this._serviceId,l=this._options.dispatchFrameUrl;this._dispatchFrame=s({\"aria-hidden"
+    },
+    {
+      "offset": 186883,
+      "ctx": "is._supportedPaymentMethods).map((function(g){return this._supportedPaymentMethods[g]}).bind(this)),this._bus=new r({channel:this._componentId})}h.createChild(v),v.prototype._constructDefaultSupportedPaymentMethods=function(){var I=this._client.getConfiguration(),A=I.gatewayConfiguration.androidPay,g=I.gatewayConfiguration.creditCards,P={};return this._enabledPaymentMethods.basicCard&&g&&g.supportedCardTypes.length>0&&(P.basicCard={supportedMethods:\"basic-card\",data:{supportedNetworks:g.supporte"
+    },
+    {
+      "offset": 420950,
+      "ctx": "FrameUrl:m.openFrameUrl,height:m.height,width:m.width,top:m.top,left:m.left},this.state=m.state||{},this._bus=new i({channel:this._serviceId}),this._setBusEvents()}N.prototype.initialize=function(m){var l=(function(){m(),this._bus.off(o.DISPATCH_FRAME_READY,l)}).bind(this);this._bus.on(o.DISPATCH_FRAME_READY,l),this._writeDispatchFrame()},N.prototype._writeDispatchFrame=function(){var m=c.DISPATCH_FRAME_NAME+\"_\"+this._serviceId,l=this._options.dispatchFrameUrl;this._dispatchFrame=s({\"aria-hidden"
+    }
+  ],
+  "venmoConsts": "(){T(f)}),f.bus.on(a.VENMO_DESKTOP_REQUEST_NEW_QR_CODE,function(){f.sendEvent(\"venmo.tokenize.desktop.restarted-from-error-view\"),f.startPolling()}),document.body.appendChild(f.iframe),document.body.appendChild(f.alertBox)})},E.prototype.launchDesktopFlow=function(){var f=this;this.isHidden=!1;var T=new this.Promise(function(y,O){f.launchDesktopPromiseRejectFunction=O;var b=function(){f.bus.off(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.off(a.VENMO_DESKTOP_UNKNOWN_ERROR,N)},N=function(l){b(),f.sendEvent(\"venmo.tokenize.desktop.unknown-error\"),O({allowUIToHandleError:!1,reason:\"UNKNOWN_ERROR\",err:l})},m=function(){b(),f.updateVenmoDesktopPaymentContext(\"CANCELED\"),f.sendEvent(\"venmo.tokenize.desktop.status-change.canceled-from-modal\"),O({allowUIToHandleError:!1,reason:\"CUSTOMER_CANCELED\"})};f.completedHandler=function(l){b(),y(l)},f.bus.on(a.VENMO_DESKTOP_CUSTOMER_CANCELED,m),f.bus.on(a.V",
+  "dfrConst": "not found as :",
+  "frameServiceBus": "e \"+l+\" must be provided\")}),!/^[\\w_]+$/.test(m.name))throw new Error(\"A valid frame name must be provided\")}function N(m){b(m),this._serviceId=u().replace(/-/g,\"\"),this._options={name:m.name+\"_\"+this._serviceId,dispatchFrameUrl:m.dispatchFrameUrl,openFrameUrl:m.openFrameUrl,height:m.height,width:m.width,top:m.top,left:m.left},this.state=m.state||{},this._bus=new i({channel:this._serviceId}),this._setBusEvents()}N.prototype.initialize=function(m){var l=(function(){m(),this._bus.off(o.DISPATCH_FRAME_READY,l)}).bind(this);this._bus.on(o.DISPATCH_FRAME_READY,l),this._writeDispatchFrame()},N.proto"
+}

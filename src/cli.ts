@@ -19,6 +19,7 @@ const { values, positionals } = parseArgs({
     depth: { type: 'string' },
     'max-time': { type: 'string' },
     'rate-ms': { type: 'string' },
+    'allow-origins': { type: 'string' },
   },
   strict: true,
   allowPositionals: true,
@@ -34,6 +35,7 @@ const flag = values as {
   depth?: string;
   'max-time'?: string;
   'rate-ms'?: string;
+  'allow-origins'?: string;
 };
 
 const HELP_SCAN = `\
@@ -56,6 +58,16 @@ OPTIONS
                           Default: 300 (5 minutes)
   --rate-ms <ms>          Minimum milliseconds between page requests per origin
                           (rate-limiting / politeness delay).  Default: 500
+  --allow-origins <list>  Comma-separated additional origins to include in crawl
+                          scope.  The seed origin is always included.  Supports
+                          exact origins and wildcard subdomain patterns:
+                            --allow-origins https://www.acme.com,https://api.acme.com
+                            --allow-origins *.acme.com
+                            --allow-origins https://*.acme.com
+                          "*.acme.com" matches any subdomain (any scheme) but NOT
+                          the apex acme.com itself — add that separately if needed.
+                          Note: www ↔ apex redirects are detected automatically
+                          and do not require this flag.
   -h, --help              Show this help text and exit.
 
 OUTPUT
@@ -252,6 +264,16 @@ if (subcommand === 'scan') {
     process.exit(1);
   }
 
+  const allowOrigins = flag['allow-origins']
+    ? flag['allow-origins'].split(',').map((o) => o.trim()).filter(Boolean).map((o) => {
+        if (!o.includes('*') && !o.includes('://')) {
+          log.warn({ raw: o, normalized: `https://${o}` }, '--allow-origins entry has no scheme — assuming https://');
+          return `https://${o}`;
+        }
+        return o;
+      })
+    : undefined;
+
   try {
     const { pagesVisited, findingsCount } = await crawl({
       url: flag.target,
@@ -260,6 +282,7 @@ if (subcommand === 'scan') {
       maxDepth,
       maxMs,
       rateMs,
+      allowOrigins,
     });
     log.info({ findingsCount, pagesVisited, outDir }, 'scan complete');
     process.exit(0);
